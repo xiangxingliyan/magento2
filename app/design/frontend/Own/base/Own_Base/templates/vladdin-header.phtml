@@ -1,0 +1,97 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+$demiwareHelper = $objectManager->get('Ave40\Base\Helper\Demiware\Demiware');
+$isActive = $demiwareHelper->demiwareIsActive();
+?>
+
+
+<div class="home-header">
+
+    <?php if (!$_COOKIE['top_ad_click'] && $isActive): ?>
+	<div class="home-top-ad" style="display: none;">
+		<a href="/base/demiware/">
+			<img src="/media/wysiwyg/home/top_ad_free.jpg" alt="">
+		</a>
+		<span class="top-ad-close-btn">&times;</span>
+	</div>
+
+	<script>
+        require(['jquery'], function ($) {
+            $(function(){
+                var $topAdClose = $('.home-top-ad .top-ad-close-btn');
+
+                $topAdClose.off('click');
+                $topAdClose.click(function () {
+                    function setCookie(name, value) {
+                        var Days = 1;
+                        var exp = new Date();
+                        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+                        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";path=/";
+                    }
+
+                    setCookie('top_ad_click', 1);
+                    // var $parent = $(this).parent().css('height', $(this).offsetHeight);
+                    // $parent.find('img').animate({height: 0}, 500);
+                    $(this).parents('.home-top-ad').remove();
+                });
+            })
+        })
+	</script>
+    <?php endif; ?>
+
+    <div class="header-content w-1200 clearfix">
+        <div class="logo">
+            <a href="/" title="vladdin">
+                <img src="<?php echo $block->getViewFileUrl('images/header/logo.png'); ?>" alt="vladdin">
+            </a>
+        </div>
+
+            <div class="menu">
+                <ul class="nav-list clearfix">
+					<li class="nav-product-item">
+						<a href="javascript:;" title="Product">Product <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+						<div class="nav-product-popup">
+							<ul class="nav-product-list clearfix">
+								<li>
+									<a href="/product-kit" title="VLADDIN Kit">
+										<img src="/media/wysiwyg/home/nav_pro_01.png" alt="VLADDIN nav Kit">
+										<p class="nav-product-name">VLADDIN Kit</p>
+									</a>
+								</li>
+								<li>
+									<a href="/product-re-kit" title="VLADDIN RE Kit">
+										<img src="/media/wysiwyg/home/nav_pro_02.png" alt="VLADDIN nav RE Kit">
+										<p class="nav-product-name">VLADDIN RE Kit</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+                    <li>
+                        <a href="/blog" title="News">News</a>
+                    </li>
+                    <li>
+                        <a href="/review" title="Review">Review</a>
+                    </li>
+                    <li>
+                        <a href="/wholesale-service/" title="Wholesale">Wholesale</a>
+                    </li>
+                    <li>
+                        <a href="/products" title="Store">Store</a>
+                    </li>
+                </ul>
+            </div>
+            <ul class="language-list">
+                <li>
+                    <a href="http://www.vladdin.net/" title="Chinese" target="_blank">
+                        <img src="<?php echo $block->getViewFileUrl('images/header/lang_cn.png') ?>" alt="Chinese language icon">
+                    </a>
+                </li>
+            
+            </ul>
+
+    </div>
+
+</div>
+

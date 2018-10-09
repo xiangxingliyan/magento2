@@ -1,0 +1,123 @@
+.right-slide-bar{
+    position: fixed;
+    right: 10px;
+    bottom: 128px;
+    height: 100px;
+    width: 50px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}   
+.sideBar-animate{
+    position:absolute;
+    width:50px;
+    height:100px;
+    left:0px;
+    background:url('/pub/static/frontend/Solwin/freego/en_US/images/eci_xunpan.png') no-repeat center;
+    font-size: 10px;
+
+    -webkit-animation: two-up-down .8s ease infinite 80ms alternate;
+    animation: two-up-down .8s ease infinite 80ms alternate;
+}
+@keyframes two-up-down{
+    from{
+        -webkit-transform:translate(0,8px);
+        transform:translate(0,8px)
+    }
+    to{
+        -webkit-transform:translate(0,-8px);
+        transform:translate(0,-8px)
+    }
+}
+.black_overlay{ 
+    display: none; 
+    position: absolute; 
+    top: 0%; 
+    left: 0%; 
+    width: 100%; 
+    height: 100%; 
+    background-color: black; 
+    z-index:1001; 
+    -moz-opacity: 0.3; 
+    opacity:.30; 
+    filter: alpha(opacity=33); 
+} 
+.white_content { 
+    display: none; 
+    position: fixed; 
+    top: 15%; 
+    left: 30%; 
+    width: 40%; 
+    height: auto;
+    z-index:1002; 
+    overflow: auto; 
+}
+
+.eci-whose-form{
+    background-color:#4285f5;
+    text-align: center;
+    padding: 5%;
+    border-radius: 10px;
+}
+.eci-whose-form h2{
+    color: #ffffff;
+    font-size: 26px;
+    margin-top: 0;
+}
+
+.eci-whose-form form#simple-inquire-form > div {
+    background-color: #ffffff;
+    margin: 2% 8%;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+}
+.eci-whose-form form#simple-inquire-form > div span:first-child {
+    line-height: 40px;
+    width: 20%;
+    float: left;
+    text-align: left;
+    padding-left: 3%;
+}
+.eci-whose-form form#simple-inquire-form > div input, .eci-whose-form form#simple-inquire-form > div textarea, .eci-whose-form form#simple-inquire-form > div select {
+    border: none;
+    line-height: 40px;
+    width: 73%;
+}
+
+.eci-whose-form form#simple-inquire-form > div input:focus, .eci-whose-form form#simple-inquire-form > div textarea:focus, .eci-whose-form form#simple-inquire-form > div select:focus {
+    box-shadow: none;
+}
+
+.eci-whose-form button.send.sendBtn {
+    width: 100%;
+    border: none;
+    line-height: 40px;
+    background-color: #12b5b1;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 0;
+}
+.eci-whose-form span.remain-word {
+    color: #4285f5;
+}
+.eci-whose-form select.required-entry {
+    padding: 0;
+}
+.eci-whose-form textarea.textarea {
+    width: 65% !important;
+    padding: 0;
+}
+.eci-whose-form .send-submit {
+    background-color: #4285f5 !important;
+}
+.eci-whose-form span.asterisk {
+    line-height: 40px;
+}
+.eci-close-button{
+    width:40px;
+    height:67px;
+    display: block;
+    background:url('/pub/static/frontend/Solwin/freego/en_US/images/closebutton.png') no-repeat center;
+    margin-left: 48%;
+}

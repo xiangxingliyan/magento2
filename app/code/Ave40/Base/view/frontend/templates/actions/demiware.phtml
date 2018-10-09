@@ -1,0 +1,439 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl = $storeManager->getStore()->getBaseUrl();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$demiwareHelper = $block->getDemiwareHelper();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+$productInfo = $block->getProductInfo();
+$postUrl = $block->getPostActionUrl();
+?>
+
+<link href="<?php echo $assetRepository->createAsset('css/common.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/index.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/header.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/mobile.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/free-application.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+
+<div class="free-app-page">
+    <div class="banner imgCenterPosition">
+        <img src="/media/wysiwyg/product/f-app-banner-01.jpg" alt="">
+        <img src="/media/wysiwyg/product/f-app-banner-02.png" alt="">
+    </div>
+    <div class="f-product-info">
+        <div class="wrapper w-1200 clearfix">
+            <div class="f-product-img f-left">
+                <img src="/media/wysiwyg/product/f-app-product.png" alt="">
+            </div>
+            <div class="f-product-details f-left">
+                <div class="f-product-name">
+                    <div>
+                        <span class="free-label">Free Sample</span>
+                        <span class="product-name-text"><?php echo $productInfo['name'];?></span>
+                    </div>
+                    <div class="f-product-attr"><?php echo $productInfo['color'];?></div>
+                </div>
+
+                <div class="f-price-qty-box">
+                    <span class="f-price-col">
+                        <label >Price:</label>
+                        <span class="f-min-price f-red"><?php echo $productInfo['price1'];?></span>—
+                        <span class="f-max-price f-red"><?php echo $productInfo['price2'];?></span>
+                    </span>
+                    <span class="f-qty">
+                        <label>Quantity:</label>
+                        <span class="f-red"><?php echo $demiwareHelper->getDemiwareQuantity(); ?></span>
+                        <span class="f-qty-tips">(Random delivery)</span>
+                    </span>
+                </div>
+
+                <div class="f-terms clearfix">
+                    <div class="f-terms-icon f-left">
+                        <span>Terms of<br/> Appication:</span>
+                    </div>
+                    <div class="f-terms-info f-left">
+                        <ul>
+                            <li><i></i>Applicant must meet local legal age requirements</li>
+                            <li><i></i>Become a Vladdin website Registered User</li>
+                            <li><i></i>Agree to submit review of product within 15 days after recieving sample</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="f-entires"><span class="f-entires-val f-red"><?php echo $block->getTotalCount(); ?></span>Entires</div>
+                <?php if (!empty($demiwareHelper->demiwareIsActive())):?>
+                <div class="f-time">
+                    <label>Time Remaining: </label>
+                    <span class="f-time-js" data-start-time="<?php echo date("Y-m-d H:i:s");?>"  data-end-time="<?php echo $demiwareHelper->getLastDate();?>" id="free-js-countdown">
+                        <span class="days js-countdown-day">00</span>Days
+                        <span class="hours js-countdown-hour">00</span>Hours
+                        <span class="mins js-countdown-minute">00</span>Minutes
+                        <span class="secs js-countdown-second">00</span>Seconds
+                    </span>
+                </div>
+                <?php endif; ?>
+                <div class="f-button">
+                    <?php if (!empty($demiwareHelper->demiwareIsActive())):?>
+                        <?php if($customerSession->isLoggedIn()): ?>
+
+                            <?php if (empty($demiwareHelper->getCustomerActionInfo())):?>
+                                <button class="f-submit-btn">Free Application</button>
+                            <?php else:?>
+                                <b>You have already applied for!</b>
+                            <?php endif; ?>
+
+                        <?php else: ?>
+                            <span>Must be <a href="javascript:;" class="f-sign-in-btn">logged in!</a></span>
+                        <?php endif; ?>
+                    <?php else:?>
+                        <b>Expired Promotion!</b>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-1200">
+        <?php if (empty($demiwareHelper->getCustomerActionInfo())):?>
+        <div class="f-application-form hide" id="f-application-form">
+            <form id="application-form" action="<?php echo $postUrl;?>" method="post" enctype="multipart/form-data" autocomplete="off">
+                <input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey() ?>" />
+                <input name="demiware_code" type="hidden" value="<?php echo $demiwareHelper->getDemiwareCode() ?>" />
+                <p class="title">Application Form</p>
+                <ul>
+                    <li class="fields clearfix">
+                        <div class="first-name-box">
+                            <label for="">First Name:</label>
+                            <div class="input-box">
+                                <input type="text" name="first_name" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                        <div class="last-name-box">
+                            <label for="">Last Name:</label>
+                            <div class="input-box">
+                                <input type="text" name="last_name" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="email-box">
+                            <label for="">E-Mail:</label>
+                            <div class="input-box">
+                                <input type="email" name="email" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                        <div class="address-box">
+                            <label for="">Address:</label>
+                            <div class="input-box">
+                                <input type="text" name="street" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="phone-box">
+                            <label for="">Phone Number:</label>
+                            <div class="input-box">
+                                <input type="text" name="phone" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                        <div class="country-box">
+                            <label for="">Country:</label>
+                            <div class="input-box">
+                                <input type="text" name="country" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="pod-systems-box">
+                            <label for="">Have you previously used any other Pod Systems?</label>
+                            <div class="input-box">
+                                <input type="text" name="other_pod_systems" required="required" maxlength="100" placeholder="If you have, Please list here">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                        <div class="electronic-box">
+                            <label for="">How long have you been using electronic cigarettes?</label>
+                            <div class="input-box">
+                                <input type="text" name="smoke_for_years" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="reason-box">
+                            <label for="">Please share with us your reason for sampling our product:</label>
+                            <div class="input-box">
+                                <textarea name="reason" id="" required="required" maxlength="500"></textarea>
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="confirm-box">
+                        <?php if($customerSession->isLoggedIn()): ?>
+                            <input type="submit" class="confirm-btn" value="Confirm"/>
+                        <?php else: ?>
+                            <span>Must be logged in!</span>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </form>
+
+            <div class="popup verify-info-popup">
+				<form action="" id="verify-info-form">
+					<p class="title">Verify Information</p>
+					<ul>
+						<li class="fields clearfix">
+							<div class="first-name-box">
+								<label for="">First Name:</label>
+								<div class="input-box">
+									<input type="text" name="first_name" readonly disabled maxlength="50">
+									<p class="form-tips"></p>
+								</div>
+							</div>
+							<div class="last-name-box">
+								<label for="">Last Name:</label>
+								<div class="input-box">
+									<input type="text" name="last_name" readonly disabled maxlength="50">
+									<p class="form-tips"></p>
+								</div>
+							</div>
+						</li>
+						<li class="fields clearfix">
+							<div class="email-box">
+								<label for="">E-Mail:</label>
+								<div class="input-box">
+									<input type="email" name="email" readonly disabled maxlength="50">
+									<p class="form-tips"></p>
+								</div>
+							</div>
+							<div class="address-box">
+								<label for="">Address:</label>
+								<div class="input-box">
+									<input type="text" name="street" readonly disabled maxlength="100">
+									<p class="form-tips"></p>
+
+								</div>
+							</div>
+						</li>
+						<li class="fields clearfix">
+							<div class="phone-box">
+								<label for="">Phone Number:</label>
+								<div class="input-box">
+									<input type="text" name="phone" readonly disabled maxlength="100">
+									<p class="form-tips"></p>
+
+								</div>
+							</div>
+							<div class="country-box">
+								<label for="">Country:</label>
+								<div class="input-box">
+									<input type="text" name="country" readonly disabled maxlength="100">
+									<p class="form-tips"></p>
+
+								</div>
+							</div>
+						</li>
+						<li class="fields clearfix">
+							<div class="pod-systems-box">
+								<label for="">Have you previously used any other Pod Systems?</label>
+								<div class="input-box">
+									<input type="text" name="other_pod_systems" readonly disabled maxlength="100" >
+									<p class="form-tips"></p>
+
+								</div>
+							</div>
+							<div class="electronic-box">
+								<label for="">How long have you been using electronic cigarettes?</label>
+								<div class="input-box">
+									<input type="text" name="smoke_for_years" readonly disabled maxlength="100">
+									<p class="form-tips"></p>
+								</div>
+							</div>
+						</li>
+						<li class="">
+							<div class="reason-box">
+								<label for="">Please share with us your reason for sampling our product:</label>
+								<div class="input-box">
+									<textarea readonly name="reason" disabled maxlength="500"></textarea>
+									<p class="form-tips"></p>
+								</div>
+							</div>
+						</li>
+						<li class="confirm-box">
+							<input type="button" class="verify-confirm-btn verify-info-btn" value="Confirm"/>
+							<input id="back-btn" type="button" class="back-btn verify-info-btn" value="Back"/>
+						</li>
+					</ul>
+				</form>
+			</div>
+        </div>
+        <?php endif;?>
+        <div class="f-sample-details clearfix">
+            <div class="f-sample-img f-left">
+                <p>Free Sample <br /> Details</p>
+                <img src="/media/wysiwyg/product/f-sample-details.png" alt="">
+            </div>
+            <div class="f-sample-info f-left">
+                <ul class="f-terms-info ">
+                    <li><i></i>Free to apply, samples do not require any form of payment</li>
+                    <li><i></i>After all entries have been submitted, the results will be published 3 to 7 days after the
+                        event has ended. The awarded applicants will be notified via email.</li>
+                    <li><i></i>After recieving, a proper review of the samples should be submitted, samples do not need
+                        to be returned</li>
+                    <li><i></i>Outstanding reviews will increase future application success rates, unsatisfactory responses
+                        will lead to future application restrictions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="f-datails-img-list">
+            <h3>Product Details</h3>
+            <div class="f-details-info">
+                <img src="/media/wysiwyg/product/f-product-01.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-02.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-03.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-04.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="f-service service-col ">
+            <div class="service-info introduce-word">
+                <ul class="clearfix">
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-01.png" alt="email icon">
+                                <p>Shipping Information</p>
+                                <p class="line"></p>
+                                <p>Method of shipping depends on winners locations, E-packet will be used when DHL is not available, for more details please click
+                                    <a href="/shipping-info.html" target="_blank">shipping info</a></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-02.png" alt="car icon">
+                                <p>Customer Service</p>
+                                <p class="line"></p>
+                                <p>If at anytime you encounter problems while using the device, please contact us at (support@vladdinvapor.com)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-03.png"
+                                     alt="Protection icon">
+                                <p>Delivery Time</p>
+                                <p class="line"></p>
+                                <p>All orders will be shipped within 3-5 business days of announcing the winners, along with an email containing shipping details.  </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-04.png" alt="store icon">
+                                <p>Other</p>
+                                <p class="line"></p>
+                                <p>VladdinVapor reserves all rights of giveaway rules and restrictions</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'jquery/validate'], function($){
+        $(function () {
+            $('#free-js-countdown').countDown();
+
+            $('.f-submit-btn').click(function () {
+                $('.f-application-form').slideToggle();
+            });
+
+            $('.f-sign-in-btn').click(function(){
+                $(".modal-popup").css("visibility","visible");
+                $(".modal-inner-wrap").css("transform","translateY(0%)");
+            });
+
+            $(document).on('click', '.action-close', function() {
+                $(".modal-popup").css("visibility","hidden");
+                $(".modal-inner-wrap").css("transform","translateY(200%)");
+            });
+
+            var verifyElem = $('#verify-info-form').find('[name]');
+            verifyElem.on(blur)
+
+            $('#application-form').validate({
+                onfocusout: false,
+                errorClass: 'mess-error-tip',
+                errorElement:"span",
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.next('.form-tips'));
+                },
+                submitHandler: function (form) {
+                    $('.popup').showPopupBox();
+                    var formData = jQuery('#application-form').serialize();
+
+
+					var data = $("#application-form").serializeObject();
+					var verifyForm = $("#verify-info-form")
+					$.each(data,function (name,value) {
+                        var $input = $('#verify-info-form').find("[name="+name+"]");
+
+                        if($input.attr("type")=="textarea"){
+                            verifyForm.find("[name="+name+"]").html(value);
+                        } else{
+                            verifyForm.find("[name="+name+"]").val(value);
+                        }
+                    });
+
+					$('.verify-confirm-btn').click(function(){
+                        $('.popup').closePopupBox();
+					    $.showLoading('please waiting');
+                        form.submit();
+                        $.closeLoading();
+//                        $.ajax({
+//                            url: '',
+//                            type: 'post',
+//                            data: formData,
+//                            dataType: 'json',
+//                            success: function (result) {
+//                                $.closeLoading();
+//                                $.messageBox('');
+//                                form.reset();
+//                                $('.f-application-form').slideUp();
+//                            },
+//                            error: function (error) {
+//                                $.closeLoading();
+//                                $.messageBox(error);
+//                            }
+//                        });
+					});
+
+					$('#back-btn').click(function(){
+                        $('.popup').closePopupBox();
+					})
+                }
+            });
+        })
+    })
+</script>
+

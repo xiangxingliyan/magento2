@@ -1,0 +1,173 @@
+<?php
+$order = $this->getCurrentOrder();
+?>
+<?php echo $block->getChildHtml('order_info') ?>
+<section class="admin__page-section ave40-erp">
+	<div class="admin__page-section-title">
+		<span class="title"><?php /* @escapeNotVerified */ echo __('Ave40-Erp 订单同步信息') ?></span>
+		<button class="scalable" id="ave40_query_status_button">刷新状态</button>
+	</div>
+	<div class="admin__page-section-content">
+		<div class="admin__page-section-item order_sync_info">
+			<div id="ave40_order_status_text" style="display: none;"></div>
+			<div id="ave40_order_status_loading">
+				<span style="vertical-align: middle;">查询中 </span>
+				<svg width="15" height="15" style="position:relative;vertical-align: middle;top:-1px;" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#ed6502">
+					<g fill="none" fill-rule="evenodd">
+						<g transform="translate(1 1)" stroke-width="2">
+							<circle stroke-opacity=".5" cx="18" cy="18" r="18"></circle>
+							<path d="M36 18c0-9.94-8.06-18-18-18">
+								<animateTransform
+										attributeName="transform"
+										type="rotate"
+										from="0 18 18"
+										to="360 18 18"
+										dur=".6s"
+										repeatCount="indefinite"></animateTransform>
+							</path>
+						</g>
+					</g>
+				</svg>
+			</div>
+		</div>
+		<div class="admin__page-section-item order-shipping-address">
+			<?php /* Shipping Address */ ?>
+			<div class="admin__page-section-item-title">
+				<span class="title"><?php echo __('实际到账金额:') ?></span>
+				<input type="text" id="ave40_erp_order_amount" readonly="readonly" style="opacity:0.5;"
+					   old-value="<?php echo $order->getActualAmountToAccount() ?>"
+					   value="<?php echo $order->getActualAmountToAccount() ?>"/>
+				<button type="button" class='scalable' style="display:none;" id="ave40_erp_order_amount_edit">编辑</button>
+				<button type="button" class='scalable' style="display:none;" id="ave40_erp_order_amount_save">保存</button>
+				<button type="button" class='scalable' style="display:none;" id="ave40_erp_order_amount_cancel">取消</button>
+			</div>
+			<address class="admin__page-section-item-content"></address>
+		</div>
+	</div>
+</section>
+<script>
+	~function() {
+		var ave40_order_status_text = document.getElementById('ave40_order_status_text');
+		var ave40_order_status_loading = document.getElementById('ave40_order_status_loading');
+		var ave40_query_status_button = document.getElementById('ave40_query_status_button');
+		var ave40_erp_order_amount = document.getElementById('ave40_erp_order_amount');
+		var ave40_erp_order_amount_edit = document.getElementById('ave40_erp_order_amount_edit');
+		var ave40_erp_order_amount_save = document.getElementById('ave40_erp_order_amount_save');
+		var ave40_erp_order_amount_cancel = document.getElementById('ave40_erp_order_amount_cancel');
+		
+		//查询同步状态
+		~function () {
+			ave40_query_status_button.onclick = function () {
+				this.setAttribute('disabled', 'disabled');
+				ave40_order_status_loading.style.display = 'block';
+				ave40_order_status_text.style.display = 'none';
+				ave40_erp_order_amount_cancel.click();
+				
+				setTimeout(function() {
+					new Ajax.Request('<?php echo $this->getQueryStateUrl(); ?>', {
+						parameters: {orderId: '<?php echo $order->getId() ?>'},
+						onSuccess: function(transport) {
+							ave40_query_status_button.removeAttribute('disabled');
+							var result = transport.responseJSON;
+							
+							if(!result) {
+								ave40_order_status_text.innerHTML = '<span style="color:red;">查询失败</span>';
+							} else {
+								if(result.fail) {
+									ave40_order_status_text.innerHTML = '<span style="color:red;">查询失败, '+result.message+'</span>';
+								} else {
+									ave40_order_status_text.innerHTML = result.data.html;
+								}
+							}
+							
+							//显示查询结果
+							ave40_order_status_text.style.display = 'block';
+							ave40_order_status_loading.style.display = 'none';
+							
+							if(!result.data.syncdata) {
+								result.data.syncdata = {status: '<?php echo \Ave40\Base\Model\Mdw\Records::STATUS_PENDING ?>'};
+							}
+							
+							//判断是否允许修改实际到账金额
+							if(result.data.syncdata.status == '<?php echo \Ave40\Base\Model\Mdw\Records::STATUS_PENDING ?>'
+								|| result.data.syncdata.status == '<?php echo \Ave40\Base\Model\Mdw\Records::STATUS_FAILURE ?>') {
+								ave40_erp_order_amount_edit.style.display = '';
+							} else {
+								ave40_erp_order_amount_edit.style.display = 'none';
+								
+								if(result.data.syncdata.status == '<?php echo \Ave40\Base\Model\Mdw\Records::STATUS_COMPLETED ?>') {
+									ave40_query_status_button.style.display = 'none';
+								}
+							}
+						},
+						
+						onFailure: function () {
+							ave40_query_status_button.removeAttribute('disabled');
+							ave40_order_status_text.innerHTML = '<span style="color:red;">查询失败</span>';
+						}
+					});
+				}, 50);
+			};
+		}();
+		
+		
+		//立即查询
+		ave40_query_status_button.click();
+		
+		//实际到账金额
+		~function () {
+			ave40_erp_order_amount_edit.onclick = function () {
+				ave40_erp_order_amount.removeAttribute('readonly');
+				ave40_erp_order_amount_edit.style.display = "none";
+				ave40_erp_order_amount_save.style.display = "inline-block";
+				ave40_erp_order_amount_cancel.style.display = "inline-block";
+				ave40_erp_order_amount.focus();
+				ave40_erp_order_amount.style.opacity=1;
+			};
+			
+			ave40_erp_order_amount_cancel.onclick = function () {
+				ave40_erp_order_amount.value = ave40_erp_order_amount.getAttribute('old-value');
+				ave40_erp_order_amount.setAttribute('readonly', 'readonly');
+				ave40_erp_order_amount_edit.style.display = "inline-block";
+				ave40_erp_order_amount_save.style.display = "none";
+				ave40_erp_order_amount_cancel.style.display = "none";
+				ave40_erp_order_amount.style.opacity=0.5;
+			};
+			
+			ave40_erp_order_amount_save.onclick = function () {
+				var val = parseFloat(ave40_erp_order_amount.value);
+				
+				if(ave40_erp_order_amount.value.length == 0) {
+					alert('请输入实际到账金额');
+					ave40_erp_order_amount.focus();
+					return ;
+				}
+				
+				if(isNaN(val)) {
+					alert('实际金额有误, 必须是数字');
+					ave40_erp_order_amount.select();
+					return ;
+				}
+				
+				new Ajax.Request('<?php echo $this->getSaveActualAmountUrl(); ?>', {
+					parameters: {amount:val, orderId: '<?php echo $order->getId() ?>'},
+					onSuccess: function(transport) {
+						var result = transport.responseJSON;
+						
+						if(result.success) {
+							ave40_erp_order_amount.value = result.data.amount;
+							ave40_erp_order_amount.setAttribute('old-value', result.data.amount);
+							ave40_erp_order_amount_cancel.click();
+						} else {
+							alert(result.message);
+						}
+					},
+					
+					onFailure: function () {
+						alert('保存失败');
+					}
+				});
+			};
+		}();
+	}();
+</script>

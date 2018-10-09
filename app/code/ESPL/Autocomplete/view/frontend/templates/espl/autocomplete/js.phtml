@@ -1,0 +1,292 @@
+<?php
+/**
+ * ESPL_Autocomplete extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Elitech Rest API License
+ * that is bundled with this package in the file license.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.elitechsystems.com/license.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to info@elitechsystems.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * versions in the future. If you wish to customize this extension for your
+ * needs please refer to http://www.elitechsystems.com for more information.
+ *
+ * @category   Elitech
+ * @package    ESPL_Autocomplete
+ * @author-email  info@elitechsystems.com
+ * @copyright  Copyright 2017 � elitechsystems.com. All Rights Reserved
+ */
+
+// @codingStandardsIgnoreFile
+
+$helper = $this->helper('ESPL\Autocomplete\Helper\Data');
+?>
+<?php if ($helper->isEnabled()) : ?>
+<style type="text/css">
+  .tt-dataset-category .tt-suggestions .tt-suggestion > a:hover{
+    color:<?php /* @noEscape */ echo $helper->getCategotyResulttextcolorhover() ?>;
+  }
+  .tt-dataset-category .tt-suggestions .tt-suggestion > a{
+    color:<?php /* @noEscape */ echo $helper->getCategotyResulttextcolor() ?>;
+  }
+  .tt-dataset-category .tt-suggestions .tt-suggestion{
+    background-color:<?php /* @noEscape */ echo $helper->getCategotyResultbackground() ?>; 
+  }
+
+  .tt-dataset-category .empty:hover{
+   color:<?php /* @noEscape */ echo $helper->getCategotyResulttextcolorhover() ?>; 
+  }
+  .tt-dataset-category .empty{
+   color:<?php /* @noEscape */ echo $helper->getCategotyResulttextcolor() ?>;   
+  }
+  .tt-dataset-products .empty:hover{
+   color:<?php /* @noEscape */ echo $helper->getProductResulttexthovercolor() ?>; 
+  }
+  .tt-dataset-products .empty{
+   color:<?php /* @noEscape */ echo $helper->getProductResulttextcolor() ?>;   
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion > a:hover .info > span {
+   color:<?php /* @noEscape */ echo $helper->getProductResulttexthovercolor() ?>; 
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion .info > span{
+   color:<?php /* @noEscape */ echo $helper->getProductResulttextcolor() ?>;
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion .info .price-box .price{
+   color:<?php /* @noEscape */ echo $helper->getProductResultpricetextcolor() ?>;
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion{
+    background-color:<?php /* @noEscape */ echo $helper->getProductResultbackground() ?>; 
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion > a:hover .info .price-box .price {
+   color:<?php /* @noEscape */ echo $helper->getProductResultpricetextcolorhover() ?>; 
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion .info .price-box .price-label{
+   color:<?php /* @noEscape */ echo $helper->getProductResultpricelabeltextcolor() ?>; 
+  }
+  .tt-dataset-products .tt-suggestions .tt-suggestion > a:hover .info .price-box .price-label {
+   color:<?php /* @noEscape */ echo $helper->getProductResultpricelabeltexthovercolor() ?>;  
+  }
+</style>
+<script type="text/javascript">
+require(['jquery','espl/typehead'], function($) {
+jQuery('#search').removeClass('required-entry');
+// init some useful variables
+var priceFormat = <?php /* @noEscape */ echo $this->helper('Magento\Framework\Json\Helper\Data')
+-> jsonEncode($helper->getJsPriceFormat()) ?>;
+var baseUrl = '<?php /* @noEscape */ echo $helper->getBaseUrl() ?>';
+var baseUrlMedia = '<?php /* @noEscape */ echo $helper->getBaseUrlMedia() ?>';
+
+var catheadertext = '<?php /* @noEscape */ echo $helper->getCategotyHeadertextcolor() ?>';
+var catheaderback = '<?php /* @noEscape */ echo $helper->getCategotyHeaderbackground() ?>';
+var catresultback = '<?php /* @noEscape */ echo $helper->getCategotyResultbackground() ?>';
+var catresulttexthov = '<?php /* @noEscape */ echo $helper->getCategotyResulttextcolorhover() ?>';
+
+var catheadertextfont = '<?php /* @noEscape */ echo $helper->getCategoryHeadertext() ?>';
+var proheadertextfont = '<?php /* @noEscape */ echo $helper->getProductHeadertext() ?>';
+
+var proheadertext = '<?php /* @noEscape */ echo $helper->getProductHeadertextcolor() ?>';
+var proheaderback = '<?php /* @noEscape */ echo $helper->getProductHeaderbackground() ?>';
+var proresulttext = '<?php /* @noEscape */ echo $helper->getProductResulttextcolor() ?>';
+var proresultback = '<?php /* @noEscape */ echo $helper->getProductResultbackground() ?>';
+var proresulttexthov = '<?php /* @noEscape */ echo $helper->getProductResulttexthovercolor() ?>';
+
+// constructs the suggestion engine if View Product are On
+<?php if ($helper->getViewProductConf() != 0) : ?>
+var engine = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    <?php if ($helper->getUseLocalStorage()) : ?>
+    prefetch: { url: baseUrl + '/autocomplete/product/json' },
+    <?php else : ?>
+    remote: { url: baseUrl +'/autocomplete/product/json' },
+    <?php endif; ?>
+    limit: <?php /* @noEscape */ echo $helper->getLimit() ?>,
+    ttl: <?php /* @noEscape */ echo $helper->getCacheLifetime() * 1000 ?> // milliseconds
+});
+engine.initialize();
+<?php endif; ?>
+
+// constructs the suggestion engine if View Category are On
+<?php if ($helper->getViewCategoryConf() != 0) : ?>
+var category = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    <?php if ($helper->getUseLocalStorage()) : ?>
+    prefetch: { url: baseUrl + '/autocomplete/category/json' },
+    <?php else : ?>
+    remote: { url: baseUrl + '/autocomplete/category/json' },
+    <?php endif; ?>
+    limit: <?php /* @noEscape */ echo $helper->getCategotyLimit() ?>,
+    ttl: <?php /* @noEscape */ echo $helper->getCacheLifetime() * 1000 ?> // milliseconds
+});
+
+category.initialize();
+
+<?php endif; ?>
+
+// kicks off the loading/processing of `local` and `prefetch`
+<?php if ($helper->getViewCategoryConf() != 0 || $helper->getViewProductConf() != 0) : ?>
+jQuery('#search').typeahead({
+  hint: true,
+  highlight: true,
+  minLength: <?php /* @noEscape */ echo $helper->getMinLength() ?>
+},
+<?php if ($helper->getViewCategoryConf() != 0) : ?>
+{
+  name: 'category',
+  display: 'name',
+  source: category.ttAdapter(),
+  templates: {
+     header: '<span style="padding-top:5px; padding-bottom:5px;'+
+     ' display:inline-block; background:'+ 
+     catheaderback + ';color:'+ 
+     catheadertext + '; width:100%;"><span style="margin-left:5px;">'+ 
+     catheadertextfont +'</span></span><div>',
+     empty: '<div class="empty" style="padding-left:12px;" style="background:'+ catresultback + ';">' +
+                   '<?php /* @noEscape */ echo __('No Result') ?>' +
+               '</div>',
+    suggestion: function(categorys) {
+            return '<a  href="' + categorys.url_path + '">' +
+                            '<span class="name" style="display:inline-block; width:100%;">' + 
+                            categorys.name + '</span>' +
+                        '<div class="clearer"><!-- --></div>' +
+                    '</a>';
+        }
+  }
+}
+<?php endif; ?>
+<?php if ($helper->getViewProductConf() != 0 && $helper->getViewCategoryConf() != 0) : ?>
+,
+<?php endif; ?>
+<?php if ($helper->getViewProductConf() != 0) : ?>
+{
+  name: 'products',
+  display: 'name',
+  source: engine.ttAdapter(),
+  templates: {
+    header: '<span style="padding-top:5px; padding-bottom:5px; '+
+    'display:inline-block; background:'+ 
+    proheaderback + ';color:'+ 
+    proheadertext + '; width:100%;"><span style="margin-left:5px;">'+ 
+    proheadertextfont +'</span></span>',
+    empty: '<div class="empty" style="padding-left:12px;">' +
+                   '<?php /* @noEscape */ echo __('No Result') ?>' +
+               '</div>',
+    suggestion: function(product) {
+            if (product.image && product.image != 'no_selection') {
+                img = product.image;
+            }
+            return '<a href="' + product.url_path + '">' +
+                        '<div class="image search-product-img" >' +
+                            '<img src="' + img + '" >' +
+                        '</div>' +
+                        '<div class="info" style="padding-left:5px">' +
+                            '<span id=name_'+product.entity_id +' class="name">' + product.name + '</span>' +
+                            '<div class="price-box" >' + formatSuggestionPrice(product, priceFormat) + '</div>' +
+                        '</div>' +
+                        '<div class="clearer"><!-- --></div>' +
+                    '</a>';
+        }
+  }
+}
+<?php endif; ?>
+);
+<?php endif; ?>
+jQuery('#search').bind('typeahead:selected', function(obj, product, name) {
+    window.location.href = product.url_path;
+});
+
+function formatSuggestionPrice(product, priceFormat) {
+    var price = '';
+    switch (product.type_id) {
+        case 'grouped':
+        case 'configurable':
+        case 'bundle':
+            price = '<p class="minimal-price">' +
+                        '<span class="price-label" style="font-size:14px;">'+
+                        '<?php /* @noEscape */ echo __('Starting at:') ?>&nbsp;</span>' +
+                        '<span class="price" style="font-weight:bold; line-height:0; font-size:14px;">' + 
+                        formatCurrency(product.price, priceFormat, false) + '</span>' +
+                    '</p>';
+            break;
+        default:
+            if (parseFloat(product.final_price) < parseFloat(product.price)) {
+                price += '<p class="old-price">' +
+                             '<span class="price-label">'+
+                             '<?php /* @noEscape */ echo __('Regular Price:') ?>&nbsp;</span>' +
+                             '<span class="price" style="font-size:14px;">' 
+                             + formatCurrency(product.price, priceFormat, false) + '</span>' +
+                         '</p>' +
+                         '<p class="special-price">' +
+                             '<span class="price" style="font-weight:bold; line-height:0; font-size:14px;">' +
+                                 formatCurrency(product.final_price, priceFormat, false) +
+                             '</span>' +
+                         '</p>';
+            } else {
+                price += '<span class="price" style="font-weight:bold; line-height:0; font-size:14px;">' +
+                             formatCurrency(product.price, priceFormat, false) +
+                         '</span>';
+            }
+    }
+
+    return price;
+}
+
+function formatCurrency(price, format, showPlus){
+    var precision = isNaN(format.precision = Math.abs(format.precision)) ? 2 : format.precision;
+    var requiredPrecision = isNaN(format.requiredPrecision = Math.abs(
+      format.requiredPrecision)) ? 2 : format.requiredPrecision;
+
+    //precision = (precision > requiredPrecision) ? precision : requiredPrecision;
+    //for now we don't need this difference so precision is requiredPrecision
+    precision = requiredPrecision;
+
+    var integerRequired = isNaN(format.integerRequired = Math.abs(format.integerRequired)) ? 1 : format.integerRequired;
+
+    var decimalSymbol = format.decimalSymbol == undefined ? "," : format.decimalSymbol;
+    var groupSymbol = format.groupSymbol == undefined ? "." : format.groupSymbol;
+    var groupLength = format.groupLength == undefined ? 3 : format.groupLength;
+
+    var s = '';
+
+    if (showPlus == undefined || showPlus == true) {
+        s = price < 0 ? "-" : ( showPlus ? "+" : "");
+    } else if (showPlus == false) {
+        s = '';
+    }
+
+    var i = parseInt(price = Math.abs(+price || 0).toFixed(precision)) + "";
+    var pad = (i.length < integerRequired) ? (integerRequired - i.length) : 0;
+    while (pad) { i = '0' + i; pad--; }
+    j = (j = i.length) > groupLength ? j % groupLength : 0;
+    re = new RegExp("(\\d{" + groupLength + "})(?=\\d)", "g");
+
+    /**
+     * replace(/-/, 0) is only for fixing Safari bug which appears
+     * when Math.abs(0).toFixed() executed on "0" number.
+     * Result is "0.-0" :(
+     */
+    var r = (j ? i.substr(0, j) + groupSymbol : ""
+      ) + i.substr(j).replace(re, "$1" + groupSymbol
+      ) + (precision ? decimalSymbol + Math.abs(price - i
+        ).toFixed(precision).replace(/-/, 0).slice(2) : "")
+    var pattern = '';
+    if (format.pattern.indexOf('{sign}') == -1) {
+        pattern = s + format.pattern;
+    } else {
+        pattern = format.pattern.replace('{sign}', s);
+    }
+
+    return pattern.replace('%s', r).replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+//]]>
+});
+</script>
+<?php endif; ?>

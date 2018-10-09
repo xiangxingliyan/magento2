@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="update_order_transger_no_cronjob" instance="Ave40\Base\Cron\TransferNo" method="execute">
+            <schedule>0 */2 * * *</schedule>
+        </job>
+    </group>
+</config>

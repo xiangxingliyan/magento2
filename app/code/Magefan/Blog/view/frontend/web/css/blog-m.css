@@ -1,0 +1,470 @@
+/**
+ * Copyright © 2015 Ihor Vansach (ihor@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+
+.blog-index-index .page-title:after{
+    content: '';
+    height: 0;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    border-width: 7px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.clearfix:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+.post-list .post-holder {
+    margin-bottom: 20px;
+}
+.post-list .post-holder:hover {
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 0px 8px 0px rgba(4, 0, 0, 0.27);
+}
+.post-list .post-holder .post-header {
+    position:relative;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    height: 358px;
+}
+.post-list .post-r-info{
+    float: right;
+    /*width: 33.39%;*/
+    width: 380px;
+}
+.post-list .post-holder .post-content {
+    border: solid 1px #dedede;
+}
+.post-list .post-holder .post-header .post-info {padding: 20px 0;}
+.post-list .post-holder .post-header .post-info .item {display: inline-block;}
+.post-list .post-holder .post-header .post-info .label {
+    font-weight: 700;
+    display: none;
+}
+.post-list .post-holder .post-header .post-info .value {
+    color: #5d5d5d;
+    font-family: ArialMT;
+    font-size: 14px;
+}
+.blog-index-index .post-list .post-holder .post-header .post-info .dash,.blog-index-index .item.post-author{
+    display: none !important;
+}
+
+.blog-post-view .page-main > .page-title-wrapper .page-title{
+    margin-bottom: 15px;
+}
+
+.blog-post-view .post-text-hld {
+    padding: 30px 15px;
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+.blog-post-view .post-content {
+    margin-top: 38px;
+}
+
+.post-list {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    list-style: none;
+    padding: 0 48px;
+}
+
+.post-view .post-holder .post-header .post-info .item, .dash{
+    display: inline-block;
+}
+
+.post-view .block.related ol {
+    padding: 0;
+}
+
+.post-view  .block.related ol li {
+    list-style: none;
+}
+
+.post-view .block.related ol li {
+    list-style: none;
+    width: calc((100% - 9.6%) / 3);
+    float: left;
+    margin-right: 4.8%;
+}
+
+.post-view .block.related ol li:last-child {
+    margin-right: 0;
+}
+
+.block.related .related-post-title {
+    color: #121212;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.related-post-text{
+    color: #121212;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+
+.related-post-date {
+    color: #5d5d5d;
+    margin: 5px 0 10px;
+}
+
+.related-post-image {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.post-list .post-content .post-read-more {
+    float:right;
+    border-radius: 4px;
+    border: solid 1px #110505;
+    padding: 6.5px 16.5px;
+    color: #110505;
+    font-size: 18px;
+    position: absolute;
+    right: 50px;
+    bottom: 25px;
+}
+.post-list .post-content .post-read-more:hover{
+    background-color: #110505;
+    color: #fff;
+}
+.toolbar-blog-posts .pages strong.page, .toolbar-blog-posts .pages .action, .toolbar-blog-posts a.page {
+    padding: 0 7.5px !important;
+    border-color: #110505 !important;
+    font-size: 16px;
+    color: #110505;
+    font-family: Helvetica;
+}
+.toolbar-blog-posts .pages strong.page{
+    background-color: #110505;
+    color: #fff;
+}
+.toolbar-blog-posts .pages .item{
+    margin: 0 10px 0 0;
+}
+.blog-category-view .category-content {padding-left: 40px;}
+.post-content .post-description ul,
+.post-content .post-description ol {list-style-position: inside;}
+.post-list .post-content .post-description .post-ftimg-hld {
+    float: left;
+    /*width: 66.61%;*/
+    width: calc(100% - 380px);
+    font-size: 0;
+
+    height: 358px;
+    overflow: hidden;
+}
+
+.post-list .post-content .post-description .post-ftimg-hld img {
+    padding:0px;
+    margin:0px;
+}
+
+.blog-index-index .page-main > .page-title-wrapper .page-title{
+    margin-left: 50px;
+}
+
+@media (max-width: 496px) {
+    .post-content .post-description .post-ftimg-hld {width: 100%; margin:0px;}
+}
+.post-list .post-header .post-title a {
+    text-decoration: none;
+    font-size: 26px;
+    color: #121212;
+    font-family: Helvetica;
+}
+.post-list .post-r-info .post-text-hld a {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    max-height: 120px;
+    font-family: Helvetica;
+    color: #131313;
+    line-height: 24px;
+}
+.post-list .post-header .post-title {
+    margin: 0px;
+    float:left;
+}
+.post-list .post-holder .post-header .addthis_toolbox {
+    float: right;
+    padding-top: 20px;
+    display: none;
+}
+.post-list .hidden {display:none;}
+
+.post-view .post-holder .post-header .addthis_toolbox {float: right;}
+.post-view .post-bottom {margin-top:30px;}
+
+.post-view .post-nextprev-hld  {margin-bottom: 30px;}
+.post-view .post-nextprev-hld .nextprev-link {font-weight: 700;}
+.post-view .post-nextprev-hld .prev-link {float:left}
+.post-view .post-nextprev-hld .next-link {float:right}
+
+.post-view .post-gallery {margin:15px 0 15px 0}
+.post-view .post-gallery .gallery-image-hld {margin: 0 14px 14px 0; border:1px solid #ccc; display: block; float:left}
+.post-view .post-gallery .gallery-image{padding: 0px; margin:0px; display:block}
+
+.post-view .block {margin-bottom: 30px;}
+
+.post-view .post-bottom .block.related{
+    display: block;
+}
+
+.post-view .post-bottom .block .title{
+    padding-bottom: 5px;
+    border-bottom: 2px solid #110505;
+}
+
+.post-view .post-bottom .block .title strong{
+    font-size: 20px;
+}
+
+
+.widget.block-recent-posts .block-content .item {
+    padding: 8px 0 0px 0px;
+}
+
+.widget.block-categories ul {
+    list-style: initial;
+    padding-left:0px;
+}
+
+.widget.block-categories ul ul {
+    margin-left:20px;
+}
+
+.widget.block-categories ul,
+.widget.block-categories li {
+    margin: 5px 0 5px 9px;
+    padding: 0px;
+}
+
+.widget.block-rss .rss-icon {float: left; width: 23px; padding-right: 10px;}
+
+
+.widget.blog-search {
+    width:100%;
+    margin-bottom: 40px;
+    position: relative;
+    float: right;
+    padding-left: 15px;
+    z-index: 4;
+}
+
+.widget.blog-search .block-content {
+    margin-bottom: 0;
+}
+
+.widget.blog-search  label {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    text-decoration: none;
+    display: inline-block;
+    float: right;
+}
+
+.widget.blog-search .control {
+    border-top: 0;
+    margin: 0;
+    padding: 0;
+    clear: both;
+}
+
+.widget.blog-search input {
+    position: static;
+    padding-right: 35px;
+    margin: 0;
+    left: -300%;
+}
+
+.widget.blog-search .action.search {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 1;
+    display: inline-block;
+    background-image: none;
+    background: none;
+    -moz-box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: 400;
+}
+
+.widget.blog-search .action.search:before {
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 32px;
+    color: #8f8f8f;
+    content: '\e615';
+    font-family: 'luma-icons';
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+.widget.blog-search .action.search > span {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* Tag claud widget */
+.widget.block-tagclaud .smallest{font-size: 0.75em}
+.widget.block-tagclaud .small{font-size:1em}
+.widget.block-tagclaud .medium{font-size:1.25em}
+.widget.block-tagclaud .large{font-size:1.5em}
+.widget.block-tagclaud .largest{font-size:2em}
+
+.blog-widget-recent .post-list {
+    padding: 0px;
+    margin: 0px;
+}
+
+.blog-widget-recent .post-holder {
+    width: 29%;
+    float: left;
+    margin: 5px;
+}
+
+.blog-widget-recent .post-description .post-text-hld {
+    max-height: 150px;
+    min-height: 150px;
+    overflow-y: auto;
+}
+
+.blog-widget-recent-masonry .post-description .post-text-hld {
+    max-height: none;
+    min-height: 0;
+}
+.blog-widget-recent-masonry .post-description .post-ftimg-hld {
+    width: 100%;
+    margin: 0px;
+}
+
+.mfblog-autoloader {text-align: center;}
+.mfblog-autoloader .mfblog-show-onload {display: none;}
+
+@media (max-width: 1180px) {
+    .post-list{
+        padding: 0;
+    }
+}
+@media (max-width: 767px) {
+    .post-list .post-content .post-description .post-ftimg-hld{
+        width: 100%;
+        height: auto;
+    }
+    .post-list .post-r-info{
+        width: 100%;
+    }
+    .post-list .post-content .post-description .post-ftimg-hld img{
+        height: inherit;
+        max-width: 100%;
+    }
+
+    .page-main > .page-title-wrapper .page-title{
+        font-size: 18px;
+    }
+
+    .blog-index-index .page-title:after{
+        border-width: 4px;
+    }
+
+    .post-list .post-header .post-title a{
+        font-size:20px;
+    }
+
+    .post-list .post-holder .post-header .post-info .value{
+        font-size : 13px;
+    }
+
+    .post-list .post-holder .post-header{
+        padding: 10px 10px;
+        height: 310px;
+    }
+
+    .post-list .post-r-info .post-text-hld{
+        font-size: 14px;
+    }
+
+    .post-list .post-content .post-read-more{
+        padding: 3px 10px;
+        font-size: 14px;
+        right: 30px;
+    }
+
+    .blog-index-index .page-main > .page-title-wrapper .page-title{
+        margin-left: 0;
+    }
+
+    .blog-post-view .post-text-hld{
+        padding: 15px 0;
+        font-size: 14px;
+    }
+
+    .blog-post-view .post-content{
+        margin-top: 20px;
+    }
+
+    .post-view .post-bottom .block .title strong {
+        font-size: 14px;
+    }
+
+    .post-view .post-bottom .block .title{
+        border-width: 1px;
+        margin-bottom: 5px;
+    }
+
+    .post-view .block.related ol li{
+        width: 100%;
+        margin-right: 0;
+    }
+
+
+}
+@media (max-width: 420px) {
+    #mfblog_gcomments {max-width:345px; overflow-y: scroll;}
+}

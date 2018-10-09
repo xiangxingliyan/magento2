@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Author: Sebwite
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <menu>
+        <add id="Ave40_Base::root" title="Ave40 配置" module="Ave40_Base" sortOrder="30" resource="Ave40_Base::root"/>
+
+        <add id="Ave40_Base::root_orderSync" title="订单同步" module="Ave40_Base" sortOrder="99" parent="Ave40_Base::root" resource="Ave40_Base::root_orderSync"/>
+        <add id="Magento_Backend::ave40_base_config_erp" title="ERP or CRM" module="Magento_Backend" sortOrder="99" parent="Ave40_Base::root_orderSync" resource="Magento_Backend::ave40_base_config_erp" action="adminhtml/system_config/edit/section/ave40_base_config_erp" />
+        <add id="Ave40_Base::root_orderSync_shippingMapping" title="物流映射" module="Ave40_Base" sortOrder="99" parent="Ave40_Base::root_orderSync"
+             action="ave40_base/sync_order_shippingmapping/index" resource="Ave40_Base::root_orderSync_shippingMapping"/>
+
+        <add id="Ave40_Base::root_actionsConfig" title="活动配置" module="Ave40_Base" sortOrder="99" parent="Ave40_Base::root" resource="Ave40_Base::root_actionsConfig"/>
+        <add id="Ave40_Base::root_actionsConfig_DemiwareList" title="免费试用列表" module="Ave40_Base" sortOrder="98" parent="Ave40_Base::root_actionsConfig"
+             action="ave40_base/actions_demiware/index" resource="Ave40_Base::root_actionsConfig_DemiwareList"/>
+        <add id="Ave40_Base::root_actionsConfig_DemiwareSetting" title="免费试用配置" module="Magento_Backend" sortOrder="99" parent="Ave40_Base::root_actionsConfig"
+             resource="Magento_Backend::ave40_demiware_setting" action="adminhtml/system_config/edit/section/ave40_demiware_setting" />
+
+    </menu>
+</config>

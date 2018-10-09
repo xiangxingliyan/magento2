@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Product Service -->
+    <route url="/V1/own-product/idconvert/:params" method="GET">
+        <service class="Ave40\Base\Api\ProductInterface" method="idconvert"/>
+        <resources>
+            <resource ref="Ave40_Base::api_productIdConvert" />
+        </resources>
+    </route>
+    <route url="/V1/own-product/updateProductQtyBatch/:params" method="GET">
+        <service class="Ave40\Base\Api\ProductInterface" method="updateProductQtyBatch"/>
+        <resources>
+            <resource ref="Ave40_Base::api_productUpdateProductQtyBatch" />
+        </resources>
+    </route>
+
+    <route url="/V1/own-order/recvMdwOrderState/:params" method="GET">
+        <service class="Ave40\Base\Api\OrderInterface" method="updateOrderState"/>
+        <resources>
+            <resource ref="Ave40_Base::api_orderRecvMdwOrderState" />
+        </resources>
+    </route>
+</routes>

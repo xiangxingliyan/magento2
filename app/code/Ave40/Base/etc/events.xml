@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Ave40 Base 事件监听
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!--<event name="controller_action_predispatch_customer_account_loginPost">-->
+        <!--<observer name="captcha" instance="Magento\Captcha\Observer\CheckUserLoginObserver" />-->
+    <!--</event>-->
+    <event name="catalog_controller_product_view">
+        <observer name="ave40_base_custom_product_view_page_seo" instance="Ave40\Base\Observer\Seo\ProductViewPage" />
+    </event>
+    <event name="catalog_controller_category_init_after">
+        <observer name="ave40_base_custom_category_view_page_seo" instance="Ave40\Base\Observer\Seo\CategoryViewPage" />
+    </event>
+    <event name="controller_action_layout_render_before_catalogsearch_result_index">
+        <observer name="ave40_base_custom_search_view_page_seo" instance="Ave40\Base\Observer\Seo\SearchViewPage" />
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="orderPush" instance="Ave40\Base\Observer\Request\OrderObserver" />
+    </event>
+</config>

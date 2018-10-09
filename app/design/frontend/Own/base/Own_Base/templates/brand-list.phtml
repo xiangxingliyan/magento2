@@ -1,0 +1,46 @@
+<?php
+/**
+ * @param $block \Ave40\Base\Block\Brands
+ */
+
+$brands = $block->getBrands();
+?>
+
+
+<div class="hbr-main pad-main">
+    <div class="block-title-main">
+        <h2>Our Brands</h2>
+        <div class="title-border"></div>
+    </div>
+    <div class="hbr-main">
+        <div style="margin: 0 -10px">
+            <div class="hbr-content hbr-slider">
+                <?php foreach ($brands as $brand): ?>
+                    <?php /* @var $brand \Magento\Catalog\Model\Category\Interceptor */ ?>
+                <div class="hbr-inner">
+                    <a href="<?php echo $brand->getUrl(); ?>">
+                        <img class="img-resp center-b" src="<?php echo $brand->getImageUrl() ?>" alt="<?php echo $brand->getName() ?>" />
+                    </a>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <script>
+			require(['jquery', 'cpowlcarousel'], function ($) {
+				$(document).ready(function () {
+					$(".hbr-slider").owlCarousel({
+						items: 5,
+						itemsDesktop: [1080, 4],
+						itemsDesktopSmall: [860, 3],
+						itemsTablet: [768, 3],
+						itemsTabletSmall: [639, 3],
+						itemsMobile: [479, 2],
+						pagination: false,
+						navigationText: ['<div class="lft-btn"><i class="fa fa-angle-left"></i></div>', '<div class="rgt-btn"><i class="fa fa-angle-right"></div>'],
+						navigation: true,
+					});
+				});
+			});
+        </script>
+    </div>
+</div>

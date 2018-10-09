@@ -1,0 +1,194 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Your %store_name order has shipped" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var order.getCustomerName()":"Customer Name",
+"var order.increment_id":"Order Id",
+"var payment_html|raw":"Payment Details",
+"var comment":"Shipment Comment",
+"var shipment.increment_id":"Shipment Id",
+"layout handle=\"sales_email_order_shipment_items\" shipment=$shipment order=$order":"Shipment Items Grid",
+"block class='Magento\\\\Framework\\\\View\\\\Element\\\\Template' area='frontend' template='Magento_Sales::email\/shipment\/track.phtml' shipment=$shipment order=$order":"Shipment Track Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"var order.getShippingDescription()":"Shipping Description"
+} @-->
+<?php
+/** \Magento\Framework\View\Element\Template $block */
+?>
+<!-- 发货通知邮件 -->
+<?php $data = $block->getData();?>
+<table width="100%">
+    <tr>
+        <td class="wrapper-inner" align="center">
+            <table class="main" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 652px;border:1px solid #ddd;font-family: Arial, Helvetica, sans-serif">
+                <!-- 不需要公共头部 -->
+                <tr>
+                    <td >
+                        <!-- Begin Content -->
+                        <table style="font-size: 16px;color: #333;line-height:1.6;font-family: Arial, Helvetica, sans-serif" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <!-- banner -->
+                            <tr>
+                                <td>
+                                    <img src="https://www.vladdinvapor.com/media/wysiwyg/edm/shipment-email-banner.jpg" alt="banner" style="border: 0;vertical-align: top">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0 20px ;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                    <table style="font-size: 16px;color: #333;line-height:1.6;font-family: Arial, Helvetica, sans-serif" cellspacing="0" cellpadding="0" border="0"  width="100%">
+                                        <tr >
+                                            <td style="padding-top: 30px">
+                                                <p >Thank you for ordering Vladdin Vapor! We are pleased to inform you that your order #<?php echo $data['orderNo'];?> has been processed and shipped. You can check your shipment status at any time by visiting
+                                                    <a href="<?php echo $data['url']; ?>" target="_blank"><?php echo $data['url']; ?></a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                                <!-- 地址物流详情-->
+                                                <table  cellspacing="0" cellpadding="0" border="0"  width="100%" style="margin: 20px 0 ;border: 1px solid #dddddd;color: #666">
+                                                    <thead>
+                                                        <tr style="color: #333;font-size: 14px">
+                                                            <td style="padding: 8px 10px 0 20px ;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Billing Address</td>
+                                                            <td style="padding: 8px 8px 0 8px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Shipping Address</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+													<?php $billingAddress = $data['billingAddress'];?>
+                                                        <tr style="font-size: 13px">
+                                                            <td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                                                <p style="margin:0;"><?php echo $billingAddress['firstname'] . ' ' . $billingAddress['lastname']; ?></p>
+                                                                <p style="margin:0;"><?php echo $billingAddress['street']; ?>
+                                                                <p style="margin:0;"><?php echo $billingAddress['city'].','.$billingAddress['region'].','.$billingAddress['postcode']; ?></p>
+                                                                <p style="margin:0;"><?php echo $data['billCountry']; ?></p>
+                                                                <p style="margin:0;">T:<?php echo $billingAddress['telephone']; ?></p>
+                                                            </td>
+															<?php $shippingAddress = $data['shippingAddress']; ?>
+                                                            <td style="padding: 8px;border-bottom: 1px solid #ddd;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+																<p style="margin:0;"><?php echo $shippingAddress['firstname'] . ' ' . $shippingAddress['lastname']; ?></p>
+																<p style="margin:0;"><?php echo $shippingAddress['street']; ?>
+																<p style="margin:0;"><?php echo $shippingAddress['city'].','.$shippingAddress['region'].','.$shippingAddress['postcode']; ?></p>
+																<p style="margin:0;"><?php echo $data['shippCountry']; ?></p>
+																<p style="margin:0;">T:<?php echo $shippingAddress['telephone']; ?></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="color: #333;font-size: 14px">
+                                                            <td style="padding: 8px 10px 0 20px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Shipping Method</td>
+                                                            <td style="padding: 8px 8px 0 8px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Tracking Number</td>
+                                                        </tr>
+                                                        <tr style="font-size: 13px">
+                                                            <td style="padding: 8px 10px 8px 20px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif"><?php echo $data['shipping']; ?></td>
+                                                            <td style="padding: 8px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+																<a href="<?php echo $data['transferAddress']; ?>">
+																	<?php echo $data['trackNo']; ?>
+																</a>
+															</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- 订单详情-->
+                                                <table  cellspacing="0" cellpadding="0" border="0"  width="100%" style="margin: 20px 0 ;border: 1px solid #dddddd;border-bottom:none;color: #666">
+                                                    <thead>
+                                                    <tr style="color: #333;font-size: 14px">
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px 10px 8px 20px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Product</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Price</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Qty</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">Total</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+													<?php $items = $data['allItems']; ?>
+													<?php foreach ($items as $item): ?>
+													<?php if($item->getParentItem()) { continue; } ?>
+                                                    <tr style="font-size: 13px">
+                                                        <td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;font-size: 13px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                                            <p style="margin:0;"><?php echo $item->getName(); ?></p>
+															<?php
+																$attrInfo = '';
+																if(!empty($item->getProductOptions()['attributes_info'])) {
+                                                                    foreach ($item->getProductOptions()['attributes_info'] as $value) {
+                                                                        $attrInfo .= $value['value'].',';
+                                                                    }
+                                                                    
+                                                                    $attrInfo = trim($attrInfo,',');
+																}
+																
+															?>
+                                                            <p style="margin:0;"><?php echo $attrInfo; ?></p>
+                                                        </td>
+                                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                                            <span style="color: #e21d1d;margin:0;">$<?php echo strval(round($item->getPrice(),2));?></span>
+                                                            <span style="margin:0 ;font-size: 12px;text-decoration: line-through">
+																$<?php echo strval(round($item->getOriginalPrice(),2));?>
+															</span>
+                                                        </td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+															<?php echo str_replace('.0000','',strval($item->getQtyOrdered()));?>
+														</td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">$<?php echo strval(round($item->getRowTotal(),2));?></td>
+                                                    </tr>
+													<?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+                                                <p>We shipped your order on <?php echo $data['createAt']; ?>. If you don't see your tracking info straight away, don't worry - sometimes it takes a few hours to update.</p>
+                                                <p>If you need further assistance, please contact us at <a href="mailto:support@vladdinvapor.com">support@vladdinvapor.com</a> or visit the customer service area of our website at
+                                                    <a href="https://www.vladdinvapor.com/contact" target="_blank">https://www.vladdinvapor.com/contact</a>.</p>
+                                                <p style="margin: 0">Sincerely,</p>
+                                                <p style="margin: 0">Vladdin Vapor Customer Service</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+					</td>
+				</tr>
+				<!-- Begin Footer -->
+				<tr>
+					<td class="footer">
+						<table border="0" cellpadding="0" cellspacing="0" style="font-size: 14px;margin-top: 20px;font-family: Arial, Helvetica, sans-serif" width="100%">
+							<tbody>
+							<tr>
+								<td>
+									<div style="padding-bottom: 10px;border-bottom: 1px solid #e4e4e4;margin: 0 20px;font-size: 20px">Follow Us &gt;&gt;</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 15px 20px 0;"><a href="https://www.facebook.com/Vladdin-1575642602521132/" target="_blank" title="Facebook"><img src="http://vladdinvapor.com/media/wysiwyg/vlaemail/facebook.png" /></a> <a href="https://www.instagram.com/vladdin_official/" target="_blank" title="Instagram"><img src="http://vladdinvapor.com/media/wysiwyg/vlaemail/ins.png" /></a> <a href="https://www.youtube.com/channel/UCYk9U7ul9tVQdMZBcRUB5AQ?view_as=subscriber" target="_blank" title="Youtube"><img src="http://vladdinvapor.com/media/wysiwyg/vlaemail/youtube.png" /></a> <a href="https://plus.google.com/111280552623096333535" target="_blank" title="Google"><img src="http://vladdinvapor.com/media/wysiwyg/vlaemail/google.png" /></a></td>
+							</tr>
+							<tr>
+								<td style="padding: 0 20px;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+									<p style="margin: 10px 0 0;padding: 0;color: #9b9b9b">Wholesale Inquiry</p>
+
+									<p style="margin: 5px 0 0;padding: 0"><a href="mailto:wholesale@vladdinvapor.com" style="text-decoration: none;color: #54a6cd;" title="wholesale@vladdinvapor.com">wholesale@vladdinvapor.com</a></p>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding: 0 20px;color: #333;font-size: 14px;line-height:1.6;font-family: Arial, Helvetica, sans-serif">
+									<p style="margin: 10px 0;padding-top: 10px;border-top: 1px solid #e4e4e4;color: #9b9b9b">Copyright &copy; 2018 <a href="http://vladdinvapor.com/" style="text-decoration: none;color: #54a6cd;" target="_blank" title="Vladdin">VLADDIN</a>, Inc. All rights reserved.</p>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<!-- End Footer -->
+
+			</table>
+		</td>
+	</tr>
+</table>

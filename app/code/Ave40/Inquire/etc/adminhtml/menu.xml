@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Author: Sebwite
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <menu>
+        <add id="Ave40_Base::root_inquire" title="站点询盘" module="Ave40_Inquire" sortOrder="99" parent="Ave40_Base::root" resource="Ave40_Base::root_inquire"/>
+        <add id="Ave40_Base::root_inquire_records" title="询盘记录" module="Ave40_Inquire" sortOrder="99" parent="Ave40_Base::root_inquire"
+             resource="Ave40_Base::root_inquire_records" action="inquire_admin/records/index" />
+        <add id="Ave40_Base::root_inquire_records_setting" title="询盘配置" module="Ave40_Inquire" sortOrder="99" parent="Ave40_Base::root_inquire"
+             resource="Ave40_Base::root_inquire_records_setting" action="adminhtml/system_config/edit/section/ave40_inquire_setting" />
+    </menu>
+</config>

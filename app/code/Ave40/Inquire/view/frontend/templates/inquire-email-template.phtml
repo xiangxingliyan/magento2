@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: admin
+ * Date: 2018-08-29 0029
+ * Time: 上午 10:54
+ */
+
+/** \Magento\Framework\View\Element\Template $block */
+?>
+
+Referer: <a href="<?php echo $block->getReferer() ?>"><?php echo $block->getReferer() ?></a><br>
+IP: <?php echo $block->getIp() ?><br>
+Contact Name: <?php echo $block->getName() ?><br>
+Contact Email: <a href="mailto:<?php echo $block->getEmail() ?>"><?php echo $block->getEmail() ?></a><br>
+Contact Telephone: <?php echo $block->getPhone() ?><br>
+Sent At: <?php echo $block->getTime() ?><br>
+
+<br>
+Content: <?php echo $block->getContent() ?><br>

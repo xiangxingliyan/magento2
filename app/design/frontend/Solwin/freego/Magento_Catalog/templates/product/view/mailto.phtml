@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+
+<?php $_product = $block->getProduct() ?>
+<?php if ($block->canEmailToFriend()): ?>
+    <style>
+        .normal_tips-icon{
+            display: inline-block;
+            vertical-align: middle;
+            width: 25px;
+            height: 25px;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAACGUlEQVRIibXWv0tWURgH8M97adYw0AQraAkHtbChtqK3IV1K6Ae6NDXXIEVUSxDV1OocSiRSBP1EBx2ajNIgnKIySEvstf4AG8659XZT3/e++X6Xyz3neb7fc8499/s8haXuThWwFX04gm5sRyN+4AteYQJjWNmIKKkgcgsfcBJTOIVdKGBnfJ+K8x9xM+blEhvAHJrQjmMYwmzZ6lfi+1Ccb4/xczH/HxQyx1iIuzmO03i93io3wD7cw0Ncwmo6kd3ZDRzCgRqFxLyDOBz5fqNcrB8n0IvlGoVSLKMn8vVnxZpxB2fwrQLROWVHswGWhE9xBy3lYtdwF2+qW3jVmIm8V2GLcFUHsGeThVLcFm7olUT4YcfxNQfB+xyxi5G/L0ERT+oklOIxigm6MF0DQR5MoytBGz7VWWwebQkaVDDQNfA9Z/wKGhLBvRvrLNaInwk+Cw5eLWq5IDswnwg/XndOsaM5xfZjJhEKX2/O5LzowUQiVNii4I/V4KLgjburjG8WTmIsQQkjkaQeGIz8pbR4tuCtsMPZTRTqFKyqEwup6y/iPO5j2yYJNUW+C1jg7+I5ggd4GgP/V+gZHmE4Hcy2BZcxiZfYW6NQV8yflLkHWbFV4YNex3Ohc2qtUqQ1xr+I+YMyFX29Vm5YKKYlvMMozqJD8FLx2RHHR2NcKeYNWwPZVm4tpB1x0Z+OuEHw1AWhIx5XRUf8C/NheA3c+Xt9AAAAAElFTkSuQmCC") no-repeat center  / 100% ;
+        }
+
+        .normal_tips{
+            padding: 0 0 0 15px;
+            border: 1px solid rgb(229, 229, 229);
+            border-radius: 3px;
+            background-color: rgb(242, 242, 242);
+            margin: 30px 0 0px;
+        }
+
+        .normal_tips-text {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .normal_tips-text h3{
+            margin-top: 1rem;
+            color: #666;
+            font-size: 14px;
+            font-weight: bold;
+
+        }
+
+    </style>
+    <a href="<?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Product')->getEmailToFriendUrl($_product) ?>"
+       class="action mailto friend"><span><?php /* @escapeNotVerified */ echo __('Email To A Friend') ?></span></a>
+    <?php if ($_product && $_product->getId() == '318778'):?>
+    <div class="normal_tips">
+        <i class="normal_tips-icon"></i>
+        <div class="normal_tips-text">
+            <h3>To our valued customers in USA:</h3>
+            <p>This product cannot sell to the USA. Please think twice before putting it to your shopping cart.</p>
+        </div>
+    </div>
+    <?php endif; ?>
+<?php endif; ?>
+
+<!-- 显示头部广告  -->
+<script>
+    require(['jquery'], function($){
+        $(function () {
+            showTopAd('/media/wysiwyg/product/top_ad.jpg');
+        })
+    })
+</script>
+

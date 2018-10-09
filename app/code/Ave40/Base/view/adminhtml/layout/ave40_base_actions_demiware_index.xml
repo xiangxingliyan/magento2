@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <title>免费试用申请列表</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="\Ave40\Base\Block\Adminhtml\Actions\Demiware\Index" name="Ave40.Base.Block.Adminhtml.Actions.Demiware.Index">
+                <block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.ave40.base.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">ave40_base_grid</argument>
+                        <argument name="dataSource" xsi:type="object">Ave40\Base\Model\ResourceModel\Demiware\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">id</argument>
+                        <argument name="default_dir" xsi:type="string">DESC</argument>
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.ave40.base.grid.massaction" as="grid.massaction">
+                        <arguments>
+                            <argument name="massaction_id_field" xsi:type="string">id</argument>
+                            <argument name="form_field_name" xsi:type="string">ids</argument>
+                            <argument name="use_select_all" xsi:type="string">1</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.ave40.base.grid.columnSet">
+                        <!--<arguments>
+                            <argument name="rowUrl" xsi:type="array">
+                                <item name="path" xsi:type="string">*/*/edit</item>
+                                <item name="extraParamsTemplate" xsi:type="array">
+                                    <item name="id" xsi:type="string">getId</item>
+                                </item>
+                            </argument>
+                        </arguments>-->
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">ID</argument>
+                                <argument name="index" xsi:type="string">id</argument>
+                                <argument name="column_css_class" xsi:type="string">id</argument>
+                                <argument name="header_css_class" xsi:type="string">id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="customer_id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">申请人账号ID</argument>
+                                <argument name="index" xsi:type="string">customer_id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="first_name">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">First Name</argument>
+                                <argument name="index" xsi:type="string">first_name</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="last_name">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Last Name</argument>
+                                <argument name="index" xsi:type="string">last_name</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="smoke_for_years">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">烟龄</argument>
+                                <argument name="index" xsi:type="string">smoke_for_years</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="email">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">Email</argument>
+                                <argument name="index" xsi:type="string">email</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="country">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">国家</argument>
+                                <argument name="index" xsi:type="string">country</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="street">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">地址</argument>
+                                <argument name="index" xsi:type="string">street</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="last_updated_at">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">申请时间</argument>
+                                <argument name="index" xsi:type="string">last_updated_at</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="reason">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">申请理由</argument>
+                                <argument name="index" xsi:type="string">reason</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

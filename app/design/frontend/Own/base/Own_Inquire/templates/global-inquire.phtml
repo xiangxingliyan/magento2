@@ -1,0 +1,142 @@
+<!--10.19-->
+<div class="right-slide-bar">
+    <a href="javascript:void(0)"
+       class="sideBar-animate inquire-btn"></a>
+    <span>Wholesale</span>
+</div>
+<div id="ecig_whole" class="white_content">
+    <div class="eci-whose-form">
+        <h2>WHOLESALE CONTACT FORM</h2>
+        <form id="own-inquire-form" class="input_form"
+              success-msg="Your inquiry was submitted and will be responded to as soon as possible. Thank you for contacting us">
+            <div class="info-name">
+                <input type="text" name="name" required="required" value="" placeholder="Name">
+                <span class="asterisk">*</span>
+            </div>
+            <p class="input-tip-info"></p>
+            <div class="info-email">
+                <input type="email" name="email" required="required" value="" placeholder="Email Address">
+                <span class="asterisk">*</span>
+            </div>
+            <p class="input-tip-info"></p>
+            <div class="info-mobile">
+                <input type="number" name="mobile" value="" placeholder="Mobile">
+                <span class="asterisk" style="visibility: hidden;">*</span>
+            </div>
+            <p class="input-tip-info"></p>
+            <div class="info-textarea">
+                <textarea name="comment" placeholder="Message"
+                          required="required" class="textarea" onkeydown="checkMaxInput(this,200)"
+                          onkeyup="checkMaxInput(this,200)" onfocus="checkMaxInput(this,200)"
+                          onblur="checkMaxInput(this,200)"></textarea>
+                <span class="asterisk">*</span>
+                <span class="remain-word">(<i class="Max_msg">0</i>/200)</span>
+            </div>
+            <p class="input-tip-info"></p>
+            <div class="send-submit">
+                <input type="hidden" name="type" value="inquire">
+                <button type="submit" value="0" class="send sendBtn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="javascript:void(0)"
+       onclick="document.getElementById('ecig_whole').style.display='none';document.getElementById('fade').style.display='none'"
+       class="eci-close-button"></a>
+</div>
+<div id="fade" class="black_overlay"></div>
+
+
+<div id="whole-message"></div>
+<div id="whole-upload"><i class="fa fa-spinner fa-pulse" style="font-size: 80px; color: #2e2e2e;"></i></div>
+
+<script type="text/javascript">
+    function checkMaxInput(obj, maxLen) {
+        if (obj == null || obj == undefined || obj == "") {
+            return;
+        }
+        if (maxLen == null || maxLen == undefined || maxLen == "") {
+            maxLen = 200;
+        }
+        var strResult;
+        var $obj = jQuery(obj);
+        var newid = $obj.attr("id") + 'msg';
+        if (obj.value.length > maxLen) {
+            obj.value = obj.value.substring(0, maxLen);
+            jQuery('.Max_msg').html(obj.value.length);
+        }
+        else {
+            jQuery('.Max_msg').html(obj.value.length);
+
+        }
+    }
+
+    require(['jquery'], function ($) {
+        ~function ($) {
+            $(function () {
+                $('.inquire-btn').click(function () {
+                    $('#ecig_whole').show();
+                    $('#fade').show();
+                })
+
+            });
+        }(jQuery)
+
+    });
+
+
+    require(['jquery', 'jquery/validate'], function ($) {
+        ~function ($) {
+
+            var validator = $("#own-inquire-form").validate({
+                errorClass: 'mess-error-tip',
+                errorElement: "div",
+                onfocusout: false,
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.parent().next('.input-tip-info'));
+                },
+                submitHandler: function (form) {
+                    var inquireFormData = $('#own-inquire-form').serialize();
+                    console.log(inquireFormData);
+                    document.getElementById('whole-upload').style.display = 'block';
+                    $("#fade").css("display","block");
+                    document.getElementById('fade').style.zIndex = '999999';
+                    $.ajax({
+                        url: '/inquire',
+                        type: "post",
+                        data: inquireFormData,
+                        dataType: "json",
+                        success: function (result) {
+                            document.getElementById('fade').style.zIndex = '1001';
+                            document.getElementById('whole-upload').style.display = 'none';
+                            console.log(result)
+                            document.getElementById('whole-message').innerHTML = result.message;
+                            document.getElementById('whole-message').style.display = 'block';
+                            setTimeout(function () {
+                                document.getElementById("whole-message").style.display = "none";
+                            }, 3000);
+                            if (!result.error) {
+                                document.getElementById('ecig_whole').style.display = 'none';
+                                document.getElementById('fade').style.display = 'none';
+                                form.reset();
+                            }
+                        },
+                        error: function (error) {
+                            document.getElementById('fade').style.display = 'none';
+                            document.getElementById('whole-upload').style.display = 'none';
+                            //alert(error)
+                            document.getElementById('whole-message').style.display = 'block';
+                            document.getElementById('whole-message').innerHTML = "Some mistakes. Please fill in again.";
+                            setTimeout(function () {
+                                document.getElementById("whole-message").style.display = "none";
+                            }, 3000);
+                        }
+                    });
+                }
+            });
+
+        }(jQuery);
+    });
+
+</script>
+<!--10.19-->

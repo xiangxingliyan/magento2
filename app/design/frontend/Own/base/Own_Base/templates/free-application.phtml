@@ -1,0 +1,287 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2018/9/27
+ * Time: 11:26
+ */
+?>
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+?>
+
+    <link href="<?php echo $assetRepository->createAsset('css/common.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $assetRepository->createAsset('css/index.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $assetRepository->createAsset('css/header.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $assetRepository->createAsset('css/mobile.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo $assetRepository->createAsset('css/free-application.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+
+<div class="free-app-page">
+    <div class="banner imgCenterPosition">
+        <img src="/media/wysiwyg/product/f-app-banner-01.jpg" alt="">
+        <img src="/media/wysiwyg/product/f-app-banner-02.png" alt="">
+    </div>
+    <div class="f-product-info">
+        <div class="wrapper w-1200 clearfix">
+            <div class="f-product-img f-left">
+                <img src="/media/wysiwyg/product/f-app-product.png" alt="">
+            </div>
+            <div class="f-product-details f-left">
+                <div class="f-product-name">
+                    <div>
+                        <span class="free-label">Free Sample</span>
+                        <span class="product-name-text">VLADDIN RE Refillable Pod System Kit</span>
+                    </div>
+                    <div class="f-product-attr">(Black/Gold/Rainbow/Titanium)</div>
+                </div>
+
+                <div class="f-price-qty-box">
+                    <span class="f-price-col">
+                        <label >Price:</label>
+                        <span class="f-min-price f-red">$29.9</span>—
+                        <span class="f-max-price f-red">$31.9</span>
+                    </span>
+                    <span class="f-qty">
+                        <label>Quantity:</label>
+                        <span class="f-red">15</span>
+                        <span class="f-qty-tips">(Random delivery)</span>
+                    </span>
+                </div>
+
+                <div class="f-terms clearfix">
+                    <div class="f-terms-icon f-left">
+                        <span>Terms of<br/> Appication:</span>
+                    </div>
+                    <div class="f-terms-info f-left">
+                        <ul>
+                            <li><i></i>Applicant must meet local legal age requirements</li>
+                            <li><i></i>Become a Vladdin website Registered User</li>
+                            <li><i></i>Agree to submit review of product within 15 days after recieving sample</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="f-entires"><span class="f-entires-val f-red">12456</span>Entires</div>
+
+                <div class="f-time">
+                    <label>Time Remaining: </label>
+                    <span class="f-time-js" data-start-time=""  data-end-time="2018/11/28 22:40:00" id="free-js-countdown">
+                        <span class="days js-countdown-day">00</span>Days
+                        <span class="hours js-countdown-hour">00</span>Hours
+                        <span class="mins js-countdown-minute">00</span>Minutes
+                        <span class="secs js-countdown-second">00</span>Seconds
+                    </span>
+                </div>
+                <div class="f-button">
+                    <button class="f-submit-btn">Free Application</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-1200">
+        <div class="f-application-form hide" id="f-application-form">
+            <form action="" id="application-form">
+                <p class="title">Application Form</p>
+                <ul>
+                    <li class="fields clearfix">
+                        <div class="first-name-box">
+                            <label for="">First Name:</label>
+                            <div class="input-box">
+                                <input type="text" name="firstname" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                        <div class="last-name-box">
+                            <label for="">Last Name:</label>
+                            <div class="input-box">
+                                <input type="text" name="lastname" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="email-box">
+                            <label for="">E-Mail:</label>
+                            <div class="input-box">
+                                <input type="email" name="email" required="required" maxlength="50">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                        <div class="address-box">
+                            <label for="">Address:</label>
+                            <div class="input-box">
+                                <input type="text" name="address" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="phone-box">
+                            <label for="">Phone Number:</label>
+                            <div class="input-box">
+                                <input type="text" name="phone" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                        <div class="country-box">
+                            <label for="">Country:</label>
+                            <div class="input-box">
+                                <input type="text" name="country" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="fields clearfix">
+                        <div class="pod-systems-box">
+                            <label for="">Have you previously used any other Pod Systems?</label>
+                            <div class="input-box">
+                                <input type="text" name="podsystems" required="required" maxlength="100" placeholder="If you have, Please list here">
+                                <p class="form-tips"></p>
+
+                            </div>
+                        </div>
+                        <div class="electronic-box">
+                            <label for="">How long have you been using electronic cigarettes?</label>
+                            <div class="input-box">
+                                <input type="text" name="electronic" required="required" maxlength="100">
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="reason-box">
+                            <label for="">Please share with us your reason for sampling our product:</label>
+                            <div class="input-box">
+                                <textarea name="reason" id="" required="required" maxlength="500"></textarea>
+                                <p class="form-tips"></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="confirm-box">
+                        <input type="submit" class="confirm-btn" value="Confirm"/>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <div class="f-sample-details clearfix">
+            <div class="f-sample-img f-left">
+                <p>Free Sample <br /> Details</p>
+                <img src="/media/wysiwyg/product/f-sample-details.png" alt="">
+            </div>
+            <div class="f-sample-info f-left">
+                <ul class="f-terms-info ">
+                    <li><i></i>Free to apply, samples do not require any form of payment</li>
+                    <li><i></i>After all entries have been submitted, the results will be published 3 to 7 days after the
+                        event has ended. The awarded applicants will be notified via email.</li>
+                    <li><i></i>After recieving, a proper review of the samples should be submitted, samples do not need
+                        to be returned</li>
+                    <li><i></i>Outstanding reviews will increase future application success rates, unsatisfactory responses
+                        will lead to future application restrictions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="f-datails-img-list">
+            <h3>Product Details</h3>
+            <div class="f-details-info">
+                <img src="/media/wysiwyg/product/f-product-01.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-02.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-03.jpg" alt="">
+                <img src="/media/wysiwyg/product/f-product-04.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="f-service service-col ">
+            <div class="service-info introduce-word">
+                <ul class="clearfix">
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-01.png" alt="email icon">
+                                <p>Shipping Information</p>
+                                <p class="line"></p>
+                                <p>Method of shipping depends on winners locations, E-packet will be used when DHL is not available, for more details please click
+									<a href="/shipping-info.html" target="_blank">shipping info</a></p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-02.png" alt="car icon">
+                                <p>Customer Service</p>
+                                <p class="line"></p>
+                                <p>If at anytime you encounter problems while using the device, please contact us at (support@vladdinvapor.com)</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-03.png"
+                                     alt="Protection icon">
+                                <p>Delivery Time</p>
+                                <p class="line"></p>
+                                <p>All orders will be shipped within 3-5 business days of announcing the winners, along with an email containing shipping details.  </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="service-box">
+                            <div class="service-word">
+                                <img src="/media/wysiwyg/product/f-server-04.png" alt="store icon">
+                                <p>Other</p>
+                                <p class="line"></p>
+                                <p>VladdinVapor reserves all rights of giveaway rules and restrictions</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function($){
+        $(function () {
+			$('#free-js-countdown').countDown();
+
+			$('.f-submit-btn').click(function () {
+				$('.f-application-form').slideToggle();
+            })
+
+            $('#application-form').validate({
+                onfocusout: false,
+                errorClass: 'mess-error-tip',
+                errorElement:"span",
+                errorPlacement: function (error, element) {
+                    error.appendTo(element.next('.form-tips'));
+                },
+                submitHandler: function (form) {
+                    var formData = jQuery('#application-form').serialize();
+                    $.ajax({
+                        url: '/sms/index/save',
+                        type: 'post',
+                        data: formData,
+                        dataType: 'json',
+                        success: function (result) {
+
+                        },
+                        error: function () {
+
+                        }
+                    });
+                }
+            });
+        })
+	})
+</script>

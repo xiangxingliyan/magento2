@@ -1,0 +1,426 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+/** @var \Magefan\Blog\Model\ResourceModel\Post\CollectionFactory $blogCollectionFactory */
+$blogCollectionFactory = $objectManager->get('Magefan\Blog\Model\ResourceModel\Post\CollectionFactory');
+$blogCollection = $blogCollectionFactory->create();
+$blogCollection->setOrder('publish_time', 'desc');
+$blogCollection->addFieldToFilter('is_active', 1);
+$blogCollection->getSelect()->limit(2);
+// $blogCollection->load();
+// $blogCollection->addFieldToFilter('');
+
+?>
+
+<link href="<?php echo $assetRepository->createAsset('css/common.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/header.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/index.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/swiper.min.css')->getUrl(); ?>" rel="stylesheet"
+	  type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/animate.min.css')->getUrl(); ?>" rel="stylesheet"
+	  type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/mobile.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+
+
+<style>
+    .home-top-ad {
+        display: block!important;
+
+    }
+	a.banner-buy-now-btn:hover {
+		background-color: #fff;
+		color: #333;
+	}
+
+	/*     .banner-box.banner-re li.banner-r {
+        width: 54%;
+        text-align: center;
+    }
+
+    .banner-box.banner-re li.banner-l {
+        width: 46%;
+    }
+     */
+	@media only screen and (max-width: 395px) {
+		.features-info li {
+			height: 126px;
+		}
+	}
+</style>
+
+<?php echo $this->getLayout()
+    ->createBlock('Magento\Framework\View\Element\Template')
+    ->setTemplate('Own_Base::vladdin-header.phtml')
+    ->toHtml(); ?>
+
+
+<div class="home-main">
+	<div class="home-banner">
+		<div class="swiper-container home-banner-swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<ul class="banner-box clearfix w-1200">
+						<li class="banner-l">
+							<div class="banner-logo vape">
+								<img src="/media/wysiwyg/home/vladdin_re_gold_logo.png"
+									 alt="The vladdin logo on banner">
+							</div>
+							<div class="banner-text">
+								<p>NEW MATTE GOLD </p>
+								<p>ULTRA COMPACT</p>
+								<p>REFILLABLE POD</p>
+							</div>
+							<a href="/vladdin-re-full-kit.html" class="banner-buy-now-btn">Buy Now</a>
+						</li>
+						<li class="banner-r">
+							<img src="/media/wysiwyg/home/banner_gold.png" alt="vladdin">
+						</li>
+					</ul>
+				</div>
+
+				<div class="swiper-slide">
+					<ul class="banner-box clearfix w-1200">
+						<li class="banner-l">
+							<div class="banner-logo vape">
+								<img src="/media/wysiwyg/home/vladdin_re_titanium_logo.png"
+									 alt="The vladdin logo on banner">
+							</div>
+							<div class="banner-text">
+								<p>Sleek Titanium Color</p>
+								<p>Superior Portability</p>
+								<p>Top-fill Open Pod</p>
+							</div>
+							<a href="/vladdin-re-full-kit.html" class="banner-buy-now-btn">Buy Now</a>
+						</li>
+						<li class="banner-r">
+							<img src="/media/wysiwyg/home/banner_titanium.png" alt="vladdin">
+						</li>
+					</ul>
+				</div>
+
+				<div class="swiper-slide">
+					<ul class="banner-box banner-re clearfix w-1200">
+						<li class="banner-l">
+							<div class="banner-logo rainbow">
+                                <span style="border-color: #555">
+                                    <img src="/media/wysiwyg/home/vladdin_re_rainbow_logo.png" alt="The vladdin re rainbow logo on banner">
+                                </span>
+							</div>
+							<div class="banner-text">
+								<p>Stylish Rainbow Color</p>
+								<p>Convenient Top Fill</p>
+								<p>Patented Ccell Inside</p>
+							</div>
+							<a href="/vladdin-re-full-kit.html" class="banner-buy-now-btn">Buy Now</a>
+						</li>
+						<li class="banner-r">
+							<img src="/media/wysiwyg/home/re-rainbow-banner.png" alt="vladdin re rainbow">
+						</li>
+					</ul>
+				</div>
+
+				<div class="swiper-slide">
+					<ul class="banner-box banner-re clearfix w-1200">
+						<li class="banner-l">
+							<div class="banner-logo re">
+                                <span style="border-color: #555">
+                                    <img src="/media/wysiwyg/home/vladdin_re_logo.png" alt="The vladdin logo on banner">
+                                </span>
+							</div>
+							<div class="banner-text">
+								<p>Convenient Top Fill</p>
+								<p>Patented CCell Inside</p>
+								<p>Portable 350mAh Battery</p>
+							</div>
+							<a href="/vladdin-re-full-kit.html" class="banner-buy-now-btn">Buy Now</a>
+						</li>
+						<li class="banner-r">
+							<img src="/media/wysiwyg/home/banner_01.png" alt="vladdin Re">
+						</li>
+					</ul>
+				</div>
+
+				<div class="swiper-slide">
+					<ul class="banner-box clearfix w-1200">
+						<li class="banner-l">
+							<div class="banner-logo vape">
+								<img src="<?php echo $block->getViewFileUrl('images/home/banner-logo.png') ?>"
+									 alt="The vladdin logo on banner">
+							</div>
+							<div class="banner-text">
+								<p>US & Canadian Imported Salt Nicotine Ejuice</p>
+								<p>Patented CCell Inside</p>
+								<p>Portable 350mAh Battery </p>
+							</div>
+							<a href="/vladdin-pod-system-kit-350mah.html" class="banner-buy-now-btn">Buy Now</a>
+						</li>
+						<li class="banner-r">
+							<img src="/media/wysiwyg/home/banner_02.png" alt="vladdin">
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+
+	<!-- Re column -->
+	<div class="home-re-col home-column">
+		<div class="introduce-title w-1200">
+			<h2>VLADDIN AND VLADDIN RE</h2>
+			<p>Ultra-Compact. On-the-go. Leak-Resistance.</p>
+		</div>
+
+		<div class="re-wrapper w-1200">
+			<div class="kit-list">
+				<img src="/media/wysiwyg/home/pods_kit.png" alt="KIT image">
+			</div>
+			<ul class="pods-list clearfix">
+				<li>
+					<div class="pods-list-content">
+						<img src="/media/wysiwyg/home/pods_re.png" alt="VLADDIN RE refillable Pods image">
+						<p>VLADDIN RE refillable Pods</p>
+					</div>
+				</li>
+				<li>
+					<div class="pods-list-content">
+						<img src="/media/wysiwyg/home/pods_pre.png" alt="VLADDIN  prefilled Pods image">
+						<p>VLADDIN prefilled Pods</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- available column -->
+	<div class="home-available-col home-column">
+		<ul class="available-bg clearfix">
+			<li class="avail-l">
+				<img src="/media/wysiwyg/home/left_bg.jpg" alt="vladdin left image">
+				<span class="animateLine left" ></span>
+				<span class="animateLine right"></span>
+				<span class="animateLine bottom"></span>
+				<span class="animateLine top"></span>
+			</li>
+			<li class="avail-r">
+				<img src="/media/wysiwyg/home/right_bg.jpg" alt="vladdin right image">
+				<span class="animateLine left" ></span>
+				<span class="animateLine right"></span>
+				<span class="animateLine bottom"></span>
+				<span class="animateLine top"></span>
+			</li>
+		</ul>
+		<div class="avail-info">
+			<p>AVAILABLE NOW</p>
+			<p class="avail-title">VLADDIN</p>
+			<p class="more">
+				<a href="//vladdin-pod-system-kit-350mah.html">> Learn More</a>
+				<a href="/products">> Buy</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="home-full-col home-column">
+		<div class="home-full-wrapper clearfix">
+			<div class="full-l ">
+				<span class="after wow fullanimation" data-wow-delay="0.5s"></span>
+				<span class="before wow fullanimation" data-wow-delay="0.5s"></span>
+				<img src="/media/wysiwyg/home/full.jpg"  alt="">
+			</div>
+			<div class="full-r">
+				<div class="full-r-wrapper">
+					<h4>VLADDIN RE Full Kit</h4>
+					<p>Refillable Pods, intergrated with freedom.</p>
+					<p>Whatever has to be vaped, it's always your choice.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- history column -->
+	<div class="home-history-col home-column">
+		<div class="history-bg col-bg">
+			<img src="/media/wysiwyg/home/home_vladdin_bg.jpg" alt="VLADDIN KIT bg">
+		</div>
+
+		<div class="product-img">
+			<img src="/media/wysiwyg/home/home_vladdin_product.png" alt="vladdin image">
+		</div>
+
+		<div class="introduce-title ">
+			<p>vladdin is a Portable and easy to use pod vaping system that achieves consistent and efficient delivery by its controlled power</p>
+		</div>
+	</div>
+
+	<!-- review column -->
+    <?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $model_one = $objectManager->create('Magento\Variable\Model\Variable')->loadByCode('home_video_id_01');
+    $model_two = $objectManager->create('Magento\Variable\Model\Variable')->loadByCode('home_video_id_02');
+    $plain_value_one = $model_one->getPlainValue();
+    $plain_value_two = $model_two->getPlainValue();
+    ?>
+	<div class="home-review-col home-column">
+		<h2 class="col-title">REVIEW</h2>
+		<div class="container clearfix">
+			<div class="review-l">
+				<iframe width="100%" height="100%"
+						src="https://www.youtube.com/embed/<?php echo $plain_value_one ?>?rel=0"
+						frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</div>
+			<div class="review-r">
+				<iframe width="100%" height="100%"
+						src="https://www.youtube.com/embed/<?php echo $plain_value_two ?>?rel=0"
+						frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+
+	<!-- news -->
+	<div class="home-news-col home-column">
+		<h2 class="col-title">NEWS</h2>
+		<div class="news-container w-1200 clearfix">
+			<?php /** @var Magefan\Blog\Model\Post $blog */ ?>
+			<?php foreach ($blogCollection as $blog): ?>
+			<div class="news-item">
+				<a class="news-item-img" href="<?php echo $blog->getPostUrl() ?>" title="" target="_blank">
+					<img src="<?php echo $blog->getFeaturedImage() ?>" alt="">
+				</a>
+				<h3 class="news-item-title"><a href="<?php echo $blog->getPostUrl() ?>"><?php echo $blog->getTitle() ?></a></h3>
+				<p class="news-item-date"><?php echo $blog->getPublishDate('M m.Y') ?></p>
+				<p class="news-item-summary"><?php echo strip_tags($blog->getContent()) ?> </p>
+			</div>
+			<?php endforeach; ?>
+
+		</div>
+	</div>
+
+	<!-- service -->
+	<div class="service-col home-column w-1200">
+		<h2 class="col-title">SERVICE</h2>
+
+		<div class="service-info introduce-word">
+			<ul class="clearfix">
+				<li>
+					<div class="service-box">
+						<div class="service-word">
+							<img src="<?php echo $block->getViewFileUrl('images/home/email.png') ?>" alt="email icon">
+							<p>24/7 HELP CENTER</p>
+							<p class="line"></p>
+							<p>Please feel free to contact us for any question Email: service@vladdinvapor.com</p>
+
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="service-box">
+						<div class="service-word">
+							<img src="<?php echo $block->getViewFileUrl('images/home/guarantee.png') ?>" alt="car icon">
+							<p>GUARANTEE & RETURN</p>
+							<p class="line"></p>
+							<p>7 Days Money Back Guarantee</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="service-box">
+						<div class="service-word">
+							<img src="<?php echo $block->getViewFileUrl('images/home/pay.png') ?>"
+								 alt="Protection icon">
+							<p>SAFE PAYMENT</p>
+							<p class="line"></p>
+							<p>Pay with the world’s most popular and secure payment methods</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="service-box">
+						<div class="service-word">
+							<img src="<?php echo $block->getViewFileUrl('images/home/store.png') ?>" alt="store icon">
+							<p>24 HOURS SHIPPING</p>
+							<p class="line"></p>
+							<p>Order Ship within 24 Hours</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+</div>
+
+
+<script>
+    require(['jquery', 'swiper', 'wow'], function ($, swiper, wow) {
+        $(function () {
+            var mySwiper = new swiper('.home-banner-swiper', {
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
+                pagination: {
+                    el: '.home-banner-swiper .swiper-pagination',
+                    clickable: true
+                }
+            });
+
+            mySwiper.el.onmouseover = function () {
+                mySwiper.autoplay.stop();
+            }
+
+            mySwiper.el.onmouseout = function () {
+                mySwiper.autoplay.start();
+            }
+
+            var reviewVideoSwiper = new swiper('.review-video-swiper', {
+                autoplay: {
+                    delay: 3500
+                },
+                slidesPerView: 3,
+                spaceBetween: 30,
+
+                navigation: {
+                    nextEl: '.review-video-list .swiper-button-next',
+                    prevEl: '.review-video-list .swiper-button-prev'
+                },
+
+                breakpoints: {
+                    //当宽度小于等于320
+                    640: {
+                        slidesPerView: 1,
+                        spaceBetween: 0
+                    },
+                    //当宽度小于等于480
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 10
+                    },
+                    //当宽度小于等于640
+                    1200: {
+                        slidesPerView: 2
+                    }
+                }
+            });
+
+            var fullWow = new WOW({
+                boxClass: 'fullanimation',
+                animateClass: 'wowAnimateParams',
+                offset: 0,
+                mobile: true,
+                live: true
+            });
+
+            fullWow.init();
+        })
+    });
+
+</script>
+
+

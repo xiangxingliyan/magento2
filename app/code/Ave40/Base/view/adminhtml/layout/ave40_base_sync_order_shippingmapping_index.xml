@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <title>物流映射</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="\Ave40\Base\Block\Adminhtml\Sync\Order\Shippingmapping\Index" name="Ave40.Base.Block.Adminhtml.Sync.Order.Shippingmapping.Index" />
+        </referenceContainer>
+    </body>
+</page>

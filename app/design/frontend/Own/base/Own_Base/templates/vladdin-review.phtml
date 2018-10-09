@@ -1,0 +1,302 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+?>
+
+<link href="<?php echo $assetRepository->createAsset('css/common.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/header.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/mobile.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+
+<style>
+    .review-page {
+        padding-top: 100px;
+    }
+
+
+    .video-list {
+        margin-top: 48px;
+    }
+
+    .video-list li {
+		width: 370px;
+		height: 240px;
+		float: left;
+		margin-bottom: 40px;
+		margin-right: 30px;
+    }
+
+	.video-list {
+        padding: 0;
+    }
+
+    .review-main h2{
+        position: relative;
+    }
+
+    .triangle-down {
+        margin-left: 10px;
+    }
+
+    .triangle-down:after {
+        content: '';
+        height: 0;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+        border-width: 7px;
+        border-style: solid;
+        border-color: #000 transparent transparent transparent;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+	#review-cate-btn {
+		padding: 5px 0;
+	}
+
+	.review-popup {
+		display: none;
+		position: absolute;
+		top: 35px;
+		left: 0;
+		z-index: 1000;
+		font-size: 16px;
+		color: #fff;
+		line-height: 1.5;
+		padding: 6px 0;
+		background-color: rgba(0,0,0,0.6);
+		border-top: 1px solid #000;
+	}
+
+	.review-popup li {
+		padding: 2px 10px;
+		cursor: pointer;
+	}
+
+	.review-popup li:hover{
+		color: #07a0ec;
+	}
+
+	@media (max-width: 768px){
+		.video-list li {
+			margin-right: 0;
+		}
+
+		.review-popup{
+			font-size: 12px;
+		}
+	}
+
+
+</style>
+
+<?php echo $this->getLayout()
+    ->createBlock('Magento\Framework\View\Element\Template')
+    ->setTemplate('Own_Base::vladdin-header.phtml')
+    ->toHtml(); ?>
+
+<div class="review-page ">
+    <div class="review-main w-1200">
+        <h2>
+			<span id="review-cate-btn">
+				<span>Video List</span><i class="triangle-down"></i>
+				<ul class="review-popup">
+					<li data-id="close_pod_kit">VLADDIN KIT</li>
+					<li data-id="re_full_kit">VLADDIN RE KIT</li>
+				</ul>
+			</span>
+
+
+		</h2>
+        <ul class="video-list clearfix">
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GpTkRtzvamc" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qfHKk0eD9vA" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/lyiidAwaeMQ" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+
+			<li>
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/XZF_lNOPzYs" frameborder="0"
+						allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</li>
+			<li>
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/n3iCMx4q_4I" frameborder="0"
+						allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</li>
+			<li>
+				<iframe width="100%" height="100%" src="https://www.youtube.com/embed/fNkt2Dmr9Bo" frameborder="0"
+						allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</li>
+
+
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_7yfU-IFZOI" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/5K3Z0vXxXbE" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aPoBaosQUrw" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dfwsW2CBW9U" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/eeIgi3adcKo" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/OmYDrjy8o9Y" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/2VckEPItpH0" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/WASj0QNaG-o" frameborder="0"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+<!--            <li >
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qCXk-z_uNwY"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>-->
+            <li >
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/rFcGU73-mo0"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3rimOAo4dI0"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3Px56YjHzCg"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qCXk-z_uNwY"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/PHM_rAILmyQ"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TYWr0CMgmR4"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/eeIgi3adcKo"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VAqhEc69nPM"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/4xb84YjmCFo"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/JzemWNSq8uI"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/xrylcNjp3oA"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/cHTqpwy5r0U"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KtTJbyvh5TU"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YEPaKawKtYU"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/BJl0IkDGP28"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/0sUkaeOJfXo"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/q6tRfyuBkM8"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/HCQTMsDkkp4"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+            <li>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/k0G4Vpx2rrQ"
+                        frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('#review-cate-btn').on('mouseover',function () {
+				$('.review-popup').show();
+            }).on('mouseout',function () {
+                $('.review-popup').hide();
+            });
+
+            var videoList = $('.video-list');
+            var closePodArray = ['lyiidAwaeMQ', '5K3Z0vXxXbE','aPoBaosQUrw','dfwsW2CBW9U',
+				'eeIgi3adcKo','OmYDrjy8o9Y','2VckEPItpH0','WASj0QNaG-o','rFcGU73-mo0','3rimOAo4dI0','3Px56YjHzCg','qCXk-z_uNwY','PHM_rAILmyQ',
+				'TYWr0CMgmR4','VAqhEc69nPM','4xb84YjmCFo','JzemWNSq8uI','cHTqpwy5r0U','YEPaKawKtYU','BJl0IkDGP28','0sUkaeOJfXo','k0G4Vpx2rrQ'];
+            var reFullArray = ['GpTkRtzvamc','qfHKk0eD9vA','XZF_lNOPzYs','n3iCMx4q_4I','fNkt2Dmr9Bo','_7yfU-IFZOI','q6tRfyuBkM8','HCQTMsDkkp4'];
+
+            $('.review-popup').on('click','li',function () {
+                $('.review-popup').hide();
+                var selectArray = [];
+				var selectItem = $(this).data('id');
+
+				$('#review-cate-btn span').html($(this).text());
+                videoList.find('li').remove();
+                if (selectItem == 'close_pod_kit') {
+                    selectArray = closePodArray;
+				} else {
+                    selectArray = reFullArray;
+				}
+				var html = '';
+				$.each(selectArray,function (i,ele) {
+					html += '<li><iframe width="100%" height="100%" src="https://www.youtube.com/embed/'+ ele +'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>'
+				});
+                videoList.append(html);
+
+            })
+        })
+    });
+</script>

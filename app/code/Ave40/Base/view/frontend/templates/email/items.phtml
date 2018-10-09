@@ -1,0 +1,42 @@
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+	<table  cellspacing="0" cellpadding="0" border="0"  width="100%" style="margin: 20px 0 ;border: 1px solid #dddddd;border-bottom:none;color: #666">
+		<thead>
+		<tr style="color: #333;font-size: 14px">
+			<td style="border-bottom: 1px solid #ddd;padding: 8px 10px 8px 20px;font-size: 14px;font-family: Arial, Helvetica, sans-serif">Product</td>
+			<td style="border-bottom: 1px solid #ddd;padding: 8px;font-size: 14px;font-family: Arial, Helvetica, sans-serif">Price</td>
+			<td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;font-size: 14px;font-family: Arial, Helvetica, sans-serif">Qty</td>
+			<td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;font-size: 14px;font-family: Arial, Helvetica, sans-serif">Total</td>
+		</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($_items as $_item): ?>
+            <?php
+                if ($_item->getParentItem()) {
+                    continue;
+                }
+            ?>
+			<tr style="font-size: 13px">
+				<td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;font-size: 13px;font-family: Arial, Helvetica, sans-serif">
+					<p style="margin:0;"><?php echo $_item->getName(); ?></p>
+					<?php
+						$attrInfo = '';
+						foreach ($_item->getProductOptions()['attributes_info'] as $label) {
+							$attrInfo .= $label['value'].',';
+						}
+						$attrInfo = trim($attrInfo,',');
+					?>
+					<p style="margin:0;"><?php echo $attrInfo; ?></p>
+				</td>
+				<td style="padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;font-family: Arial, Helvetica, sans-serif">
+					<span style="color: #e21d1d;margin:0;">$<?php echo $_item->getPrice(); ?></span>
+					<span style="margin:0 0 0 5px;font-size: 12px;text-decoration: line-through">$<?php echo $_item->getOriginalPrice(); ?></span>
+				</td>
+				<td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;font-family: Arial, Helvetica, sans-serif"><?php echo $_item->getQtyOrdered(); ?></td>
+				<td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;font-size: 13px;font-family: Arial, Helvetica, sans-serif">$<?php echo $_item->getRowTotal(); ?></td>
+			</tr>
+        <?php endforeach; ?>
+		</tbody>
+	</table>
+<?php endif; ?>

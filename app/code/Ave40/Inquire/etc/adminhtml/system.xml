@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ave40_inquire_setting" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>询盘配置</label>
+            <tab>ave40_base_config</tab>
+            <resource>Ave40_Inquire::ave40_inquire_setting</resource>
+            <group id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>邮件配置</label>
+                <field id="recipients" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>接收邮箱</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+                <field id="cc" translate="label comment" type="textarea" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>抄送</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+                <field id="bcc" translate="label comment" type="textarea" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>秘密抄送</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

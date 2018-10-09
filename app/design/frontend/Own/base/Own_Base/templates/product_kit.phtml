@@ -1,0 +1,400 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$assetRepository = $objectManager->get('Magento\Framework\View\Asset\Repository');
+?>
+
+<link href="<?php echo $assetRepository->createAsset('css/common.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/index.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/header.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+<link href="<?php echo $assetRepository->createAsset('css/mobile.css')->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+
+
+<style>
+    .columns .column.main{
+        padding-bottom: 0;
+    }
+    #maincontent {
+        padding: 0;
+        margin: 0 !important;
+        max-width: 100%;
+        width: 100%;
+    }
+
+	.page-footer{
+		margin-top: 0;
+	}
+
+    .columns .column.main p{
+        margin-bottom: 0;
+    }
+
+	.introduce-title h2{
+		margin-top: 50px;
+		margin-bottom: 80px;
+	}
+
+	.product-kit-page .introduce-title{
+		position: relative;
+	}
+
+    .product-kit-page .pro-banner{
+		background: url('/media/wysiwyg/product/banner_bg.jpg') no-repeat center;
+		background-size: cover;
+		position: relative;
+		height: auto;
+    }
+
+	.pro-banner-box {
+		width: 100%;
+		padding-top: 200px;
+	}
+
+	li.pro-banner-l {
+		margin-top: 15%;
+	}
+
+	.pro-banner-box li{
+		width:50%;
+		float: left;
+	}
+
+	.pro-banner-l .banner-text {
+		font-size: 24px;
+		color: #f6f6f6;
+		margin-top: 20px;
+		line-height: 1.5;
+		padding-left: 10px;
+	}
+
+	.patented-col {
+		background: url("/media/wysiwyg/product/patented_bg.jpg") no-repeat center;
+		width: 100%;
+		background-size: cover;
+		position: relative;
+		min-height: 1110px;
+		height: auto;
+		overflow: hidden;
+	}
+
+	.flavors-list li{
+		width: 50%;
+		float: left;
+		position: relative;
+	}
+
+	.flavors-list li .flavors-word{
+		width: 60%;
+		position: absolute;
+		top: 20%;
+	}
+
+	.flavors-list li .flavors-word h4{
+		font-size: 30px;
+		font-family: Helvetica;
+	}
+
+	.flavors-list li .flavors-word p{
+		font-size: 18px;
+		line-height: 1.6;
+	}
+
+	.flavors-list li .flavors-img{
+		float: right;
+	}
+
+	.flavors-list li:nth-child(3) .flavors-img,.flavors-list li:nth-child(4) .flavors-img{
+		float: left;
+	}
+
+	.flavors-list li:nth-child(3) .flavors-word,.flavors-list li:nth-child(4) .flavors-word{
+		right: 0;
+		width: 53%;
+	}
+
+	.flavors-list li:nth-child(2) .flavors-word{
+		padding-left: 40px;
+	}
+
+
+	.patented-wrapper {
+		width: 100%;
+		color: #f3f3f3;
+	}
+
+	.patented-wrapper .introduce-title{
+		color: #f3f3f3;
+	}
+
+	.buy-col{
+		background: url("/media/wysiwyg/product/by_bg.jpg") no-repeat center;
+		width: 100%;
+		background-size: 100%;
+		padding-top: 51.04%;
+		position: relative;
+	}
+
+	.buy-col a {
+		position: absolute;
+		top: 56%;
+		left: 22.23%;
+		width: 238px;
+		height: 68px;
+		background-color: #000000;
+		box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2), inset 0px 1px 0px 0px rgba(255, 255, 255, 0.44);
+		border-radius: 5px;
+		font-size: 38px;
+		line-height: 68px;
+		text-align: center;
+		letter-spacing: 2px;
+		color: #ffffff;
+	}
+
+	@media screen and (max-width: 1095px) {
+		.flavors-list li:nth-child(2) .flavors-word{
+			padding-left: 0;
+		}
+
+		.flavors-list li .flavors-img {
+			width: 200px;
+		}
+
+		.patented-col{
+			min-height: auto;
+		}
+
+	}
+
+	@media screen and (max-width: 767px){
+		.flavors-list li{
+			width: 100%;
+			padding: 0 10px;
+			box-sizing: border-box;
+		}
+
+		.flavors-list li .flavors-img {
+			width: 150px;
+		}
+
+		.flavors-list li .flavors-word h4{
+			font-size: 16px;
+		}
+
+		.flavors-list li .flavors-word p {
+			font-size: 14px;
+		}
+
+		.flavors-list li:nth-child(3) .flavors-word, .flavors-list li:nth-child(4) .flavors-word {
+			right: 10px;
+			width: 53%;
+		}
+
+		.pro-banner-l .banner-text{
+			font-size: 14px;
+		}
+
+		.pro-banner-box{
+			padding-top: 150px;
+			padding-left: 10px;
+			padding-right: 10px;
+			box-sizing: border-box;
+		}
+
+		.introduce-title h2 {
+			margin-top: 20px;
+			margin-bottom: 40px;
+		}
+
+		.flavors-list li .flavors-word{
+			top: 10%;
+		}
+
+		.buy-col a{
+			left: 10%;
+			font-size: 14px;
+			line-height: 30px;
+			height: 30px;
+			width: 100px;
+			letter-spacing: 0;
+		}
+	}
+
+	@media screen and (max-width: 374px) {
+		.flavors-list li .flavors-img {
+			width: 130px;
+		}
+	}
+
+
+
+
+</style>
+
+<?php echo $this->getLayout()
+    ->createBlock('Magento\Framework\View\Element\Template')
+    ->setTemplate('Own_Base::vladdin-header.phtml')
+    ->toHtml(); ?>
+
+<div class="product-kit-page">
+    <div class="pro-banner">
+		<ul class="pro-banner-box w-1200 clearfix">
+			<li class="pro-banner-l">
+				<div class="banner-logo">
+					<img src="/media/wysiwyg/product/vladdin_kit.png" alt="The vladdin logo on banner">
+				</div>
+				<div class="banner-text">
+					<p>Comes with Prefilled Pods. Take </p>
+					<p>a Puff, Fix the Need</p>
+				</div>
+			</li>
+			<li class="pro-banner-r">
+				<img src="/media/wysiwyg/product/banner_pro.png" alt="vladdin pod system vape kit">
+			</li>
+		</ul>
+	</div>
+
+	<div class="close-system-introduce-col w-1200">
+		<div class="introduce-title">
+			<h2>BIG THINGS COME IN SMALL PACKAGES</h2>
+			<h4></h4>
+		</div>
+		<div class="system-product">
+			<img src="<?php echo $block->getViewFileUrl('images/home/introduce-bg.png') ?>" alt="pod system device’s features" class="system-product-bg">
+
+			<div class="system-product-word system-product-word-l">
+				<div class="wow fadeInLeft">
+					<p>Patented Ceramic</p>
+					<p>Coil Technology</p>
+				</div>
+				<img src="<?php echo $block->getViewFileUrl('images/home/patented.png') ?>"
+					 class="patented system-product-line wow fadeIn" data-wow-delay="0.1s">
+			</div>
+			<div class="system-product-word system-product-word-r">
+				<div class=" wow fadeInRight">
+					<p>Spill-proofed</p>
+					<p>mechanism</p>
+				</div>
+				<img src="<?php echo $block->getViewFileUrl('images/home/spill.png') ?>"
+					 class="spill system-product-line wow fadeIn" data-wow-delay="0.1s">
+			</div>
+		</div>
+		<div class="system-info introduce-word">
+			<ul class="clearfix">
+				<li>
+					<div class="introduce-img">
+						<img src="<?php echo $block->getViewFileUrl('images/home/gw.png') ?>" alt="protection icon">
+					</div>
+					<p>Overheating Protection</p>
+				</li>
+				<li>
+					<div class="introduce-img">
+						<img src="<?php echo $block->getViewFileUrl('images/home/360.png') ?>" alt="360°ration icon">
+					</div>
+					<p>Random Rotation without Leakage </p>
+				</li>
+				<li>
+					<div class="introduce-img">
+						<img src="<?php echo $block->getViewFileUrl('images/home/di.png') ?>" alt="operation icon">
+					</div>
+					<p>Saves time on manual refills</p>
+				</li>
+				<li>
+					<div class="introduce-img">
+						<img src="<?php echo $block->getViewFileUrl('images/home/fb.png') ?>" alt="Replacement icon">
+					</div>
+					<p>Convenient Replacement</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="patented-col">
+		<div class="patented-wrapper w-1200">
+			<div class="introduce-title">
+				<h2>PATENTED CERAMIC COIL TURE FLAVORS</h2>
+			</div>
+			<ul class="flavors-list clearfix">
+				<li>
+					<div class="flavors-word">
+						<h4>NORTHERN TOBACCO</h4>
+						<p>A straightforward flavour that features our renowned Blonde Canadian Tobace-co</p>
+					</div>
+					<div class="flavors-img">
+						<img src="/media/wysiwyg/product/kit_northern.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="flavors-word">
+						<h4>VCT TOBACCO</h4>
+						<p>A flavor that starts with rich,savory vanilla custard,followed by fine tobacco and finishes with a hint of toasted almond.</p>
+					</div>
+					<div class="flavors-img">
+						<img src="/media/wysiwyg/product/kit_vct.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="flavors-word">
+						<h4>ICE TOBACCO</h4>
+						<p>A full bodied Virginia tobacco smoked over gentle fires with smooth caramel and aromatic vanilla.</p>
+					</div>
+					<div class="flavors-img">
+						<img src="/media/wysiwyg/product/kit_ice.png" alt="">
+					</div>
+				</li>
+				<li>
+					<div class="flavors-word">
+						<h4>MINT TOBACCO</h4>
+						<p>Smooth tobacco blended with sweet, roasted nuts and embodied with fresh menthol.</p>
+					</div>
+					<div class="flavors-img">
+						<img src="/media/wysiwyg/product/kit_mint.png" alt="">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="power-col">
+		<div class="power-content w-1200">
+			<div class="introduce-title">
+				<h2>CONSISTENT AND EFFICIENT POWER DELIVERY </h2>
+				<h4></h4>
+			</div>
+
+			<div class="power-info introduce-word">
+				<ul class="clearfix">
+					<li>
+						<div class="introduce-img">
+							<img src="<?php echo $block->getViewFileUrl('images/home/350.png') ?>" alt="battery icon"
+								 class="wow rotateIn ">
+						</div>
+						<p>350mAh battery capacity</p>
+					</li>
+					<li>
+						<div class="introduce-img">
+							<img src="<?php echo $block->getViewFileUrl('images/home/usb.png') ?>" alt="USB icon" class="wow rotateIn"
+								 data-wow-delay="0.1s">
+						</div>
+						<p>Universal Mirco-USB Port</p>
+					</li>
+					<li>
+						<div class="introduce-img">
+							<img src="<?php echo $block->getViewFileUrl('images/home/shuort.png') ?>" alt="protection icon"
+								 class="wow rotateIn" data-wow-delay="0.2s">
+						</div>
+						<p>Short Circuit and Low Voltage Protection</p>
+					</li>
+					<li>
+						<div class="introduce-img">
+							<img src="<?php echo $block->getViewFileUrl('images/home/cixing.png') ?>" alt="connection icon"
+								 class="wow rotateIn" data-wow-delay="0.3s">
+						</div>
+						<p>Magnetic connection </p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="buy-col">
+		<a href="/products" target="_blank" title="Buy Now">BUY NOW</a>
+	</div>
+</div>

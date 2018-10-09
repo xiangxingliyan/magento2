@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ave40_base_config" translate="label" sortOrder="2000">
+            <label>Ave40 Base Config</label>
+        </tab>
+        <section id="ave40_base_config_erp" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>ERP or CRM</label>
+            <tab>ave40_base_config</tab>
+            <resource>Ave40_Base::ave40_base_config_erp</resource>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>一般</label>
+                <field id="order_sync_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>开启订单同步</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="ave40_base_shipped_setting" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>发货配置</label>
+            <tab>ave40_base_config</tab>
+            <resource>Ave40_Base::ave40_base_shipped_setting</resource>
+            <group id="shipped_email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>发货邮件配置</label>
+                <field id="recipients" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>接收邮箱</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+                <field id="cc" translate="label comment" type="textarea" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>抄送</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+                <field id="bcc" translate="label comment" type="textarea" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>秘密抄送</label>
+                    <comment>每行一个邮箱, 名称用逗号,隔开</comment>
+                </field>
+            </group>
+        </section>
+        <section id="ave40_demiware_setting" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>免费试用配置</label>
+            <tab>ave40_base_config</tab>
+            <resource>Ave40_Base::ave40_demiware_setting</resource>
+            <group id="base_config" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>免费试用配置</label>
+                <field id="start_action" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>开启免费试用活动</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="minimum" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>默认显示的申请人数</label>
+                    <comment>试用申请页面显示的申请人数 = 配置人数 + 实际申请人数</comment>
+                </field>
+                <field id="demiware_quantity" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>试用品份数</label>
+                    <comment>试用申请页面显示的试用品发放份数</comment>
+                </field>
+                <field id="demiware_code" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>活动编号</label>
+                    <comment>免费试用活动编号,用来统计每次活动的申请人数,可以使用年月日的组合如:20180928</comment>
+                </field>
+                <field id="last_date" translate="label comment" type="date" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>结束时间</label>
+                    <frontend_model>Ave40\Base\Block\Adminhtml\System\Config\Date</frontend_model>
+                    <comment>试用活动结束时间</comment>
+                </field>
+                <field id="product_info" translate="label comment" type="textarea" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>免费试用的商品</label>
+                    <comment>品名||颜色||价格1||价格2,用||隔开,例:VLADDIN RE Refillable Pod System Kit||(Black/Gold/Rainbow/Titanium)||$29.9 ||$31.9</comment>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

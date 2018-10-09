@@ -1,0 +1,204 @@
+<?php
+/**
+ * @var $block \Ave40\Base\Block\Adminhtml\Sync\Order\Shippingmapping\Index
+ * @var \Ave40\Base\Helper\Sync\Order\Shippingmapping $shippingHelper
+ */
+$shippingHelper = $block->getShippingmappingHelper();
+?>
+<style>
+    /* Border styles */
+    .myform table thead, .myform table tr {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-top-color: rgb(211, 202, 221);
+    }
+    .myform table {
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(211, 202, 221);
+    }
+    
+    /* Padding and font style */
+    .myform table td, .myform table th {
+        padding: 5px 10px;
+        font-size: 12px;
+        font-family: Verdana;
+        color: rgb(95, 74, 121);
+    }
+    
+    /* Alternating background colors */
+    .myform table tr:nth-child(even) {
+        background: rgb(223, 216, 232)
+    }
+    .myform table tr:nth-child(odd) {
+        background: #FFF
+    }
+    
+    .myform th {
+        font-weight:bold;
+        font-size: 15px;
+    }
+    .myform td, .myform th {
+        padding:5px;
+    }
+</style>
+<form action="<?php echo $block->getUrl('*/*/save') ?>" method="post" class="myform" id="shipping_form">
+    <table id="shipping_table">
+        <tbody>
+        <tr>
+            <th>序号</th>
+            <th>AVE40物流方式</th>
+            <th>国家</th>
+            <th>电池</th>
+            <th>ERP物流</th>
+            <th>操作</th>
+        </tr>
+        
+        <?php $index = 0; ?>
+        
+        <?php foreach($shippingHelper->getAllMappings() as $key => $row): ?>
+            <tr>
+                <td><span data-flag="index"><?php echo ++$index ?></span><input type="hidden" data-flag="id" name="shipping[id][]" value="<?php echo $row['id'] ?>"></td>
+                <td>
+                    <select name="shipping[mgcode][]" data-flag="reset">
+                        <?php foreach ($shippingHelper->getAvailableShippingMethods() as $method => $name): ?>
+                            <option value="<?php echo $method ?>" <?php echo $method==$row['shipping_code']?'selected':'' ?> ><?php echo $name ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="hidden" name="origin[mgcode][]" value="<?php echo $row['shipping_code'] ?>">
+                </td>
+                <td>
+                    <input type="hidden" name="origin[country][]">
+                    <select name="shipping[country][]" data-flag="reset">
+                        <option value="">全部</option>
+                        <?php foreach ($shippingHelper->getCountryList() as $i => $country): ?>
+                            <option value="<?php echo $country['country_id'] ?>" <?php echo $row['country'] == $country['country_id'] ? "selected" : '' ?>>
+                                <?php echo $country['name'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <input type="hidden" name="origin[battery][]">
+                    <select name="shipping[battery][]" data-flag="reset">
+                        <option value="0">全部</option>
+                        <option value="1" <?php echo $row['battery']==1?'selected':'' ?>>带电</option>
+                        <option value="2" <?php echo $row['battery']==2?'selected':'' ?>>不带电</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="hidden" name="origin[erp_code][]">
+                    <select name="shipping[erp_code][]" data-flag="reset">
+                        <option value="">--无渠道--</option>
+                        <?php foreach ($shippingHelper->getErpShippingData() as $erpCode => $erpShippingRow): ?>
+                            <option value="<?php echo $erpCode ?>" <?php echo $row['erp_code']==$erpCode?'selected':'' ?>>
+                                <?php echo $erpShippingRow['name'] ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <button type="button" onclick="confirm('确定要删除记录 <?php echo $index ?> 吗?')?window.location.href='<?php echo $block->getUrl('*/*/delete/id/' .$row['id']) ?>':0">删除</button>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <br>
+    <?php echo $block->getBlockHtml('formkey') ?>
+    <button type="button" class="scalable" onclick="add_new()">新增</button>
+    <button type="button" class="scalable" onclick="reset_form()">还原表单</button>
+	<button type="submit" class="scalable" >保存</button>
+</form>
+<br>
+<br>
+
+<form action="<?php echo $block->getUrl('*/*/copy') ?>" method="get" onsubmit="return checkout_copy(this);">
+    将&nbsp;<select name="origin" data-flag="reset" id="copy_origin">
+        <?php foreach ($shippingHelper->getAvailableShippingMethods() as $method => $name): ?>
+            <option value="<?php echo $method ?>" ><?php echo $name ?></option>
+        <?php endforeach; ?>
+    </select> &nbsp;复制到&nbsp;
+    <select name="target" data-flag="reset" id="copy_target">
+        <?php foreach ($shippingHelper->getAvailableShippingMethods() as $method => $name): ?>
+            <option value="<?php echo $method ?>" ><?php echo $name ?></option>
+        <?php endforeach; ?>
+    </select>&nbsp;
+    <button class="scalable" type="submit">复制</button>
+</form>
+
+<script id="tpl" type="text/html">
+    <td><span data-flag="index">New</span><input type="hidden" data-flag="id" name="shipping[id][]" value=""></td>
+    <td>
+        <select name="shipping[mgcode][]" data-flag="reset">
+            <?php foreach ($shippingHelper->getAvailableShippingMethods() as $method => $name): ?>
+                <option value="<?php echo $method ?>"><?php echo $name ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="hidden" name="origin[mgcode][]" value="">
+    </td>
+    <td>
+        <input type="hidden" name="origin[country][]">
+        <select name="shipping[country][]" data-flag="reset">
+            <option value="">全部</option>
+            <?php foreach ($shippingHelper->getCountryList() as $i => $country): ?>
+                <option value="<?php echo $country['country_id'] ?>">
+                    <?php echo $country['name'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </td>
+    <td>
+        <input type="hidden" name="origin[battery][]">
+        <select name="shipping[battery][]" data-flag="reset">
+            <option value="0">全部</option>
+            <option value="1" >带电</option>
+            <option value="2" >不带电</option>
+        </select>
+    </td>
+    <td>
+        <input type="hidden" name="origin[erp_code][]">
+        <select name="shipping[erp_code][]" data-flag="reset">
+            <option value="">--无渠道--</option>
+            <?php foreach ($shippingHelper->getErpShippingData() as $erpCode => $erpShippingRow): ?>
+                <option value="<?php echo $erpCode ?>">
+                    <?php echo $erpShippingRow['name'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </td>
+    <td>
+        <button type="button" onclick="remove_new(this)">删除</button>
+    </td>
+</script>
+
+<script>
+	function add_new() {
+		var tbody = document.querySelector('#shipping_table tbody');
+		var tr = document.createElement('tr');
+		tr.innerHTML = document.getElementById('tpl').innerHTML;
+		tbody.appendChild(tr);
+	}
+	
+	function remove_new(elm) {
+		elm.parentNode.parentNode.remove();
+	}
+	
+	function reset_form() {
+		confirm('确定要将表单还原成修改前的值吗?') ? document.getElementById('shipping_form').reset() : 0;
+	}
+	
+	function checkout_copy(form) {
+		var copyOrigin = document.getElementById('copy_origin');
+		var copyTarget = document.getElementById('copy_target');
+		var oriName = copyOrigin.options[copyOrigin.selectedIndex].innerHTML;
+		var tarName = copyTarget.options[copyTarget.selectedIndex].innerHTML;
+		
+		if(copyOrigin.value == copyTarget.value) {
+			alert('复制源和目录源不可相同!');
+			return false;
+		}
+		
+		return confirm('注意: 新添加还没保存的记录将会丢失。复制将会把目标物流方式的所有记录清空，并生成新的记录。\n\n当前将\n ['+oriName+'] \n\n复制到 \n['+tarName+'] \n\n继续吗?');
+	}
+</script>

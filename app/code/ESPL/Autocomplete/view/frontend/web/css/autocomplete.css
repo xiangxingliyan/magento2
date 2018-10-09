@@ -1,0 +1,90 @@
+span.twitter-typeahead {
+    float: left;
+    width: 100%;
+}
+
+input.tt-hint {
+    color: #ccc;
+}
+
+.tt-dataset-category a{
+    padding: 5px 6px 3px 11px;
+    display: block;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.tt-dropdown-menu {
+    width: 100%;
+    margin-top: 4px;
+}
+.tt-dataset-category .empty,
+.tt-dataset-products .empty {
+    padding: 4px;
+    text-align: left;
+}
+.block-search input{
+    left:0 !important;
+}
+
+.tt-dropdown-menu {
+    max-height:600px;
+    background-color:#fff;
+    overflow:scroll;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+.tt-dataset-products , .tt-dataset-category{
+    border: 1px solid #bfcdd3;
+    background: #fff;
+    border-radius: 2px;
+}
+
+.tt-dataset-products a  {
+    padding: 8px 6px 3px 11px;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+.tt-dataset-products .tt-suggestion:last-child a {
+    border-bottom: 0;
+}
+.tt-dataset-category a:hover{
+    background-color: #ecf3f6 !important;
+    text-decoration: none !important;
+}
+.tt-dataset-products a:hover,
+.tt-dataset-products a:hover .price-box .price,
+.tt-suggestion.tt-cursor a,
+.tt-suggestion.tt-cursor a .price-box .price-label,
+.tt-suggestion.tt-cursor a .price-box .price {
+    background-color: #ecf3f6;
+    text-decoration: none;
+}
+
+.tt-dataset-products a:hover .price-box .old-price .price,
+.tt-suggestion.tt-cursor a .price-box .old-price .price {
+    text-decoration: line-through;
+}
+
+.tt-dataset-products a .image {
+    float: left;
+}
+
+.tt-dataset-products a .image img {
+    width: 60px;
+}
+
+.tt-dataset-products a .info {
+    margin-left: 56px;
+}
+
+.tt-dataset-products a .price-box {
+    margin: 0 0 5px 0 ;
+}
+
+.tt-dataset-products a .clearer {
+    clear: both;
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/product/itemnum/:itemnum" method="GET">
+        <service class="Ave40\Erpapi\Api\ProductInfoInterface" method="ProductInfo"/>
+        <resources>
+            <resource ref="Ave40_Erpapi::productInfo"/>
+        </resources>
+    </route>
+</routes>

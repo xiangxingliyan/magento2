@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <title>询盘历史记录</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Ave40\Inquire\Block\Adminhtml\Records\Index" name="admin.ave40.inquire.grid.container">
+                <block class="Magento\Backend\Block\Widget\Grid" name="adminhtml.ave40.inquire.grid" as="grid">
+                    <arguments>
+                        <argument name="id" xsi:type="string">inquire_records_grid</argument>
+                        <argument name="dataSource" xsi:type="object">Ave40\Inquire\Model\ResourceModel\Records\Collection</argument>
+                        <argument name="default_sort" xsi:type="string">id</argument>
+                        <argument name="default_dir" xsi:type="string">DESC</argument>
+                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.ave40.inquire.grid.massaction" as="grid.massaction">
+                        <arguments>
+                            <argument name="massaction_id_field" xsi:type="string">id</argument>
+                            <argument name="form_field_name" xsi:type="string">ids</argument>
+                            <argument name="use_select_all" xsi:type="string">1</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.ave40.intructions.grid.columnSet">
+                        <arguments>
+                            <argument name="rowUrl" xsi:type="array">
+                                <item name="path" xsi:type="string">*/*/edit</item>
+                                <item name="extraParamsTemplate" xsi:type="array">
+                                    <item name="id" xsi:type="string">getId</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">ID</argument>
+                                <argument name="index" xsi:type="string">id</argument>
+                                <argument name="column_css_class" xsi:type="string">id</argument>
+                                <argument name="header_css_class" xsi:type="string">id</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="sender_eamil">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">询盘者邮箱</argument>
+                                <argument name="index" xsi:type="string">sender_eamil</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="sender_name">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">询盘者姓名</argument>
+                                <argument name="index" xsi:type="string">sender_name</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="sender_phone">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">询盘者手机</argument>
+                                <argument name="index" xsi:type="string">sender_phone</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="referer">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">来源地址</argument>
+                                <argument name="index" xsi:type="string">referer</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="content">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">询盘内容</argument>
+                                <argument name="index" xsi:type="string">content</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="user_type">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">用户类型</argument>
+                                <argument name="index" xsi:type="string">user_type</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="created_at">
+                            <arguments>
+                                <argument name="header" xsi:type="string" translate="true">创建时间</argument>
+                                <argument name="index" xsi:type="string">created_at</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,147 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Your %store_name order has shipped" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var billing.getName()":"Guest Customer Name",
+"var order.increment_id":"Order Id",
+"var payment_html|raw":"Payment Details",
+"var comment":"Shipment Comment",
+"var shipment.increment_id":"Shipment Id",
+"layout handle=\"sales_email_order_shipment_items\" shipment=$shipment order=$order":"Shipment Items Grid",
+"block class='Magento\\\\Framework\\\\View\\\\Element\\\\Template' area='frontend' template='Magento_Sales::email\/shipment\/track.phtml' shipment=$shipment order=$order":"Shipment Track Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"var order.getShippingDescription()":"Shipping Description"
+} @-->
+<!-- 发货通知 未登录用户 邮件 -->
+
+<table width="100%">
+    <tr>
+        <td class="wrapper-inner" align="center">
+            <table class="main" align="center" style="width: 652px;border:1px solid #ddd;font-family: Arial, Helvetica, sans-serif">
+                <!-- 不需要公共头部 -->
+                <tr>
+                    <td >
+                        <!-- Begin Content -->
+                        <table style="font-size: 16px;color: #333;line-height:1.6;font-family: Arial, Helvetica, sans-serif" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <!-- banner -->
+                            <tr>
+                                <td>
+                                    <img src="https://www.vladdinvapor.com/media/wysiwyg/edm/shipment-email-banner.jpg" alt="banner" style="border: 0;vertical-align: top">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0 20px ">
+                                    <table style="font-size: 16px;color: #333;line-height:1.6;font-family: Arial, Helvetica, sans-serif" cellspacing="0" cellpadding="0" border="0"  width="100%">
+                                        <tr >
+                                            <td style="padding-top: 30px">
+                                                <p >Thank you for ordering Vladdin Vapor! We are pleased to inform you that your order #000000645 has been processed and shipped. You can check your shipment status at any time by visiting
+                                                    <a href="https://www.17track.net/en" target="_blank">https://www.17track.net/en</a>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- 地址物流详情-->
+                                                <table  cellspacing="0" cellpadding="0" border="0"  width="100%" style="margin: 20px 0 ;border: 1px solid #dddddd;color: #666">
+                                                    <thead>
+                                                    <tr style="color: #333;font-size: 14px">
+                                                        <td style="padding: 8px 10px 0 20px ">Billing Address</td>
+                                                        <td style="padding: 8px 8px 0 8px;">Shipping Address</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr style="font-size: 13px">
+                                                        <td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;">
+                                                            <p style="margin:0;">Seth Yanow</p>
+                                                            <p style="margin:0;">411 High Street
+                                                            <p style="margin:0;">Dunellen,New Jersey,08812</p>
+                                                            <p style="margin:0;">United States</p>
+                                                            <p style="margin:0;">T:2012075548</p>
+                                                        </td>
+                                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;">
+                                                            <p style="margin:0;">Seth Yanow</p>
+                                                            <p style="margin:0;">411 High Street
+                                                            <p style="margin:0;">Dunellen,New Jersey,08812</p>
+                                                            <p style="margin:0;">United States</p>
+                                                            <p style="margin:0;">T:2012075548</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="color: #333;font-size: 14px">
+                                                        <td style="padding: 8px 10px 0 20px;">Shipping Method</td>
+                                                        <td style="padding: 8px 8px 0 8px">Tracking Number</td>
+                                                    </tr>
+                                                    <tr style="font-size: 13px">
+                                                        <td style="padding: 8px 10px 8px 20px;">E-package</td>
+                                                        <td style="padding: 8px;"><a href="">2005494959689614</a></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- 订单详情-->
+                                                <table  cellspacing="0" cellpadding="0" border="0"  width="100%" style="margin: 20px 0 ;border: 1px solid #dddddd;border-bottom:none;color: #666">
+                                                    <thead>
+                                                    <tr style="color: #333;font-size: 14px">
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px 10px 8px 20px ">Product</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;">Price</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;">Qty</td>
+                                                        <td style="border-bottom: 1px solid #ddd;padding: 8px;text-align: center;">Total</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr style="font-size: 13px">
+                                                        <td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;">
+                                                            <p style="margin:0;">Vladdin Trfillable Pod</p>
+                                                            <p style="margin:0;">Standard Version(4/pack)</p>
+                                                        </td>
+                                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;">
+                                                            <span style="color: #e21d1d;margin:0;">$33.00</span>
+                                                            <span style="margin:0 ;font-size: 12px;text-decoration: line-through">$23.00</span>
+                                                        </td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;">3</td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;">$33.00</td>
+                                                    </tr>
+                                                    <tr style="font-size: 13px">
+                                                        <td style="padding: 8px 10px 8px 20px;border-bottom: 1px solid #ddd;">
+                                                            <p style="margin:0;">Vladdin Trfillable Pod</p>
+                                                            <p style="margin:0;">Standard Version(4/pack)</p>
+                                                        </td>
+                                                        <td style="padding: 8px;border-bottom: 1px solid #ddd;">
+                                                            <span style="color: #e21d1d;margin:0;">$33.00</span>
+                                                            <span style="margin:0 ;font-size: 12px;text-decoration: line-through">$23.00</span>
+                                                        </td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;">3</td>
+                                                        <td style="text-align: center;padding: 8px;border-bottom: 1px solid #ddd;">$33.00</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p>We shipped your order on 8/14/2018. If you don't see your tracking info straight away, don't worry - sometimes it takes a few hours to update.</p>
+                                                <p>If you need further assistance, please contact us at <a href="mailto:support@vladdinvapor.com">support@vladdinvapor.com</a> or visit the customer service area of our website at
+                                                    <a href="https://www.vladdinvapor.com/contact" target="_blank">https://www.vladdinvapor.com/contact</a>.</p>
+                                                <p style="margin: 0">Sincerely,</p>
+                                                <p style="margin: 0">Vladdin Vapor Customer Service</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+    
+                    <!-- 不需要</td>,footer有 -->
+
+                <!-- Begin Footer-->
+                {{template config_path="design/email/footer_template"}}
+                <!-- End Footer -->
+

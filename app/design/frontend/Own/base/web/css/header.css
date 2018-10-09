@@ -1,0 +1,160 @@
+#maincontent {
+	padding: 0;
+	margin: 0 !important;
+	max-width: 100%;
+	width: 100%;
+}
+
+.home-header{
+	width: 100%;
+	height: auto;
+	background-color: rgba(0, 0, 0, 0.68);
+	position: fixed;
+	z-index: 100;
+	top: 0;
+}
+
+.header-content{
+	height: 100px;
+    overflow: hidden;
+}
+
+.home-top-ad {
+    position: relative;
+}
+
+/*.home-top-ad a span{
+    background-position: top center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 70px;
+    width: 100%;
+    display: block;
+}
+
+@media screen and (max-width: 767px){
+    .home-top-ad a span{
+        height: 50px;
+    }
+}*/
+@media screen and (max-width: 767px) {
+    .top-ad-close-btn {
+        font-size: 12px;
+        line-height: 15px;
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.top-ad-close-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 30px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #666;
+    background-color: #f8f8f8;
+    border-radius: 50%;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.top-ad-close-btn:hover {
+    opacity: 0.9;
+}
+
+.header-content .logo,.header-content .menu{
+	float: left;
+}
+
+.nav-list{
+	margin-bottom: 0;
+}
+
+.nav-list li ,.language-list li{
+	float: left;
+	margin: 0;
+}
+
+.menu {
+	margin-left: 20px;
+}
+
+.nav-list > li > a{
+	padding: 0 30px;
+	height: 100%;
+	line-height: 100px;
+	color: #fff;
+	font-size: 18px;
+	display: block;
+}
+
+.language-list{
+	float: right;
+	height: 100%;
+}
+
+.language-list li > span {
+	margin: 0 10px 4px;
+	color: #666;
+}
+
+.header-content .logo,.language-list li{
+	height: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+}
+
+.nav-product-popup {
+    display: none;
+    position: absolute;
+    width: 350px;
+    font-size: 14px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    margin-top: -1px;
+    background-color: #fff;
+}
+
+.nav-list li.nav-product-item:hover .nav-product-popup {
+    display: block;
+}
+
+.nav-list li.nav-product-item > a{
+	position: relative;
+	z-index: 3;
+}
+
+.nav-list li.nav-product-item:hover > a{
+	background-color: #fff;
+	color: #000;
+}
+
+
+
+.nav-product-list {
+    padding: 10px;
+    border: solid 1px rgba(51, 51, 51, 0.02);
+}
+
+.nav-product-list li {
+    width: 50%;
+    text-align: center;
+}
+
+.nav-product-popup li{
+    float: left;
+}
+
+.nav-product-name {
+	margin-top: 10px;
+	color: #000;
+	margin-bottom: 0;
+}

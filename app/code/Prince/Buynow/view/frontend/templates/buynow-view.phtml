@@ -1,0 +1,15 @@
+<?php $helper = $this->helper("Prince\Buynow\Helper\Data"); ?>
+<?php $addtocartId = $helper->getConfig('buynow/general/addtocartid'); ?>
+<?php $buttonTitle = $helper->getConfig('buynow/general/buttontitle'); ?>
+<?php $formId = $addtocartId ? $addtocartId : "product_addtocart_form"; ?>
+<div class="buynow-button">
+    <button type="submit" title="<?php /* @escapeNotVerified */ echo __($buttonTitle) ?>" id="buy-now" onclick="_gaq.push(['_trackEvent','details_buy_now_button','Click','details_buy_now_button']);" class="action primary" data-mage-init='
+    {
+        "Prince_Buynow/js/buy-now": {
+            "form": "#<?php echo $formId; ?>"
+        }
+    }
+    '>
+        <span><?php /* @escapeNotVerified */ echo __($buttonTitle) ?></span>
+    </button>
+</div>
